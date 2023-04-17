@@ -19,13 +19,19 @@
 .list-flex-container {
   display: flex;
   flex-wrap:wrap;
+  justify-content: space-evenly;
 }
 
 .article-flex-item {
   list-style-type: none;
+  align-self: center;
 }
 
 .article-list-article-img {
   padding: 30px;
   margin-top: 50px;
+}
+
+.article-list-article-date {
+  font-style: italic;
 }
