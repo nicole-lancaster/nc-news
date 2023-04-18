@@ -1,21 +1,31 @@
 import { useEffect } from "react";
 import { fetchArticles } from "../api.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ArticleList = ({ articles, setArticles, article_id }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetchArticles(setArticles).then((articlesList) => {
       setArticles(articlesList);
     });
   }, [setArticles]);
 
+  function handleClick(event) {
+    event.preventDefault();
+    console.log(event.target);
+    return event.target.then(() => {
+      navigate(`/articles/${article_id}`);
+    });
+  }
+
   return (
     <section>
       <ul className="list-flex-container">
         {articles.map((article) => {
           return (
-            <Link to={`/articles/${article_id}`}>
-              <li key={article.article_id} className="article-flex-item">
+            <Link key={article.article_id} to={`/articles/${article_id}`}>
+              <li onClick={handleClick} className="article-flex-item">
                 <img
                   className="article-list-article-img"
                   src={article.article_img_url}
