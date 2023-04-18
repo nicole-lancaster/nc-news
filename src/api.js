@@ -1,9 +1,13 @@
+import axios from "axios";
+
 export const fetchArticles = () => {
-  return fetch("https://nc-news-portfolio.onrender.com/api/articles")
+  return axios
+    .get("https://nc-news-portfolio.onrender.com/api/articles")
     .then((response) => {
-      return response.json();
+      console.log(response);
+      return response
     })
-    .then((data) => {
-      return data.articles;
-    });
+    .then(({data}) => {
+      return data.articles
+    })
 };
