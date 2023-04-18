@@ -5,6 +5,7 @@ import { fetchSingleArticle } from "../api";
 function SingleArticle() {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
+
   useEffect(() => {
     fetchSingleArticle(article_id).then((singleArticle) => {
       setSingleArticle(singleArticle);
