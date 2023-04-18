@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchSingleArticle } from "../api";
+import { sqlDateFormatter } from "../utils.js";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -18,7 +19,8 @@ function SingleArticle() {
         <h2 className="single-article-title">{singleArticle.title}</h2>
         <img src={singleArticle.article_img_url} alt={singleArticle.title} />
         <p className="single-article-author-date">
-          Written by {singleArticle.author} on {singleArticle.created_at}
+          Written by {singleArticle.author} on{" "}
+          {sqlDateFormatter(singleArticle.created_at)}
         </p>
         <p className="single-article-topic">#{singleArticle.topic}</p>
         <p className="single-article-body">{singleArticle.body}</p>

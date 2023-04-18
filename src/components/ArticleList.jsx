@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { fetchArticles } from "../api.js";
 import { Link } from "react-router-dom";
+import { sqlDateFormatter } from "../utils.js";
 
 const ArticleList = ({ articles, setArticles }) => {
   useEffect(() => {
@@ -26,7 +27,8 @@ const ArticleList = ({ articles, setArticles }) => {
                 />
                 <h2 className="article-list-article-title">{article.title} </h2>
                 <p className="article-list-article-date">
-                  Written by {article.author} on {article.created_at}
+                  Written by {article.author} on{" "}
+                  {sqlDateFormatter(article.created_at)}
                 </p>
               </li>
             </Link>
