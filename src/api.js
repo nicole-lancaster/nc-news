@@ -1,9 +1,23 @@
+import axios from "axios";
+
 export const fetchArticles = () => {
-  return fetch("https://nc-news-portfolio.onrender.com/api/articles")
+  return axios
+    .get("https://nc-news-portfolio.onrender.com/api/articles")
     .then((response) => {
-      return response.json();
+      return response;
     })
-    .then((data) => {
+    .then(({ data }) => {
       return data.articles;
+    });
+};
+
+export const fetchSingleArticle = (article_id) => {
+  return axios
+    .get(`https://nc-news-portfolio.onrender.com/api/articles/${article_id}`)
+    .then((response) => {
+      return response;
+    })
+    .then(({ data }) => {
+      return data.article;
     });
 };

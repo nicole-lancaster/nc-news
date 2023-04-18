@@ -18,7 +18,7 @@
 
 .list-flex-container {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
@@ -34,4 +34,45 @@
 
 .article-list-article-date {
   font-style: italic;
+}
+
+.SingleArticle {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+
+.single-article-title {
+  padding: 20px;
+  align-self: center;
+}
+
+.single-article-author-date {
+  padding: 10px;
+  font-style: italic;
+  align-self: center;
+}
+
+.single-article-topic {
+  padding: 10px;
+}
+
+.single-article-votes {
+  padding: 10px;
+}
+
+.single-article-comments {
+  padding: 10px;
+}
+.single-article-body {
+  padding: 10px;
+  max-width: 700px;
+  align-self: center;
+}
+
+.single-article-likes-and-comments {
+  justify-content: flex-end;
 }

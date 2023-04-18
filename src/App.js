@@ -1,15 +1,25 @@
-import './App.css';
-import ArticleList from './components/ArticleList.jsx';
-import Header from './components/Header';
+import "./App.css";
+import ArticleList from "./components/ArticleList.jsx";
+import SingleArticle from "./components/SingleArticle";
+import Header from "./components/Header";
 import { useState } from "react";
-
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [articles, setArticles] = useState([])
+  const [articles, setArticles] = useState([]);
   return (
     <div className="App">
-     <Header/>
-     <ArticleList articles={articles} setArticles={setArticles}/>
+      <Header />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ArticleList articles={articles} setArticles={setArticles} />
+          }
+        />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
+      </Routes>
     </div>
   );
 }
