@@ -16,6 +16,7 @@ function App() {
           path="/"
           element={
             <ArticleList articles={articles} setArticles={setArticles} />
+            
           }
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />

@@ -9,7 +9,6 @@ function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState({});
   const [comments, setComments] = useState([])
 
-
   useEffect(() => {
     fetchSingleArticle(article_id).then((singleArticle) => {
       setSingleArticle(singleArticle);
