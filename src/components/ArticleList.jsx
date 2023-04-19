@@ -1,14 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchArticles } from "../api.js";
 import { Link } from "react-router-dom";
 import { sqlDateFormatter } from "../utils.js";
 
 const ArticleList = ({ articles, setArticles }) => {
+  const [isLoading, setIsLoading] = useState(true)
+  
   useEffect(() => {
+    setIsLoading(true)
     fetchArticles(setArticles).then((articlesList) => {
       setArticles(articlesList);
-    });
+      setIsLoading(false)
+    })
   }, [setArticles]);
+
+  if (isLoading) return <p>Loading list of articles...</p>
 
   return (
     <section>
