@@ -15,14 +15,14 @@ const Comments = ({ article_id, comments, setComments }) => {
           setComments(comments);
           setIsLoading(false)
         })
-        .catch((err) => {
-          setIsError(true)
-        }).finally(() => {setIsError(false)})
+        .catch(() => {
+      setIsError(true) 
+        })
     }
   }, [article_id, setComments]);
 
+  if (isError) return <p>Unable to load comments</p>
   if (isLoading) return <p>Loading comments...</p>
-  if (isError) return <p>Hello I am a user error</p>
 
   return (
     <section className="Comments">

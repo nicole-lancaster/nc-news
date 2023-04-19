@@ -24,7 +24,4 @@ export const fetchCommentsByArticleID = (article_id) => {
     .then(( {data} ) => {
       return data.comments;
     })
-    .catch((err) => {
-      console.log(err);
-    });
 };
