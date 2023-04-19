@@ -7,7 +7,6 @@ const Comments = ({ article_id, comments, setComments }) => {
       fetchCommentsByArticleID(article_id)
         .then((comments) => {
           setComments(comments);
-          console.log("comments: -->", {comments});
         })
         .catch((err) => {
           console.log(err);
@@ -18,11 +17,19 @@ const Comments = ({ article_id, comments, setComments }) => {
   return (
     <section className="Comments">
       <h3>Comments</h3>
-      <p>Hello</p>
-      <ul>
-         {comments[2].body}
+      <ul className="comments-flex-container">
+        {comments.map((comment) => {
+          return (
+            <li key={comment.comment_id} className="comment-flex-item">
+              <p>{comment.body}</p>
+              <p className="comment-author-date">
+                posted by {comment.author} at {comment.created_at}
+              </p>
+              <p>{comment.votes} votes</p>
+            </li>
+          );
+        })}
       </ul>
-     
     </section>
   );
 };
