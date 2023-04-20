@@ -32,7 +32,17 @@ export const updateArticleVote = (article_id) => {
       `https://nc-news-portfolio.onrender.com/api/articles/${article_id}`,
       { inc_votes: 1 }
     )
-    .then(({data}) => {
-     return data.article
+    .then(({ data }) => {
+      return data.article;
+    });
+};
+
+export const postComment = (comment) => {
+  return axios
+    .post(
+      `https://nc-news-portfolio.onrender.com/api/articles/${comment.article_id}/comments`, comment
+    )
+    .then(( response ) => {
+      return response
     });
 };

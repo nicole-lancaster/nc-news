@@ -1,10 +1,14 @@
 import { fetchCommentsByArticleID } from "../api";
 import { useEffect, useState } from "react";
 import { sqlDateFormatter } from "../utils.js";
+import { postComment } from "../api.js";
 
 const Comments = ({ article_id, comments, setComments }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [username, setUsername] = useState("");
+  const [commentBody, setCommentBody] = useState("");
+  const [hasPosted, setHasPosted] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,13 +23,66 @@ const Comments = ({ article_id, comments, setComments }) => {
       });
   }, [article_id, setComments]);
 
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    const newComment = {
+      article_id: article_id,
+      username: username,
+      body: commentBody,
+    };
+    postComment(newComment)
+      .then((response) => {
+        setHasPosted(true);
+        setComments([response.data.comment, ...comments]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(err);
+      });
+  };
+
   if (isError)
     return <p>Sorry, we are unable to load comments at the moment</p>;
+
   if (isLoading) return <p>Loading comments...</p>;
 
   return (
     <section className="Comments">
       <h3>Comments</h3>
+      <form onSubmit={handleCommentSubmit} className="postCommentForm">
+        <label htmlFor="comment-input-box">
+          post your comment in the box below!
+        </label>
+        <textarea
+          required
+          type="text"
+          value={commentBody}
+          placeholder="Write your comment here..."
+          onChange={(event) => {
+            setCommentBody(event.target.value);
+          }}
+        />
+        <label htmlFor="username-input-box">What is your username?</label>
+        <select
+          required
+          value={username}
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        >
+          <option value="" selected disabled>
+            Choose your username
+          </option>
+          <option>grumpy19</option>
+          <option>happyamy2016</option>
+          <option>jessjelly</option>
+          <option>weegembump</option>
+        </select>
+        <button type="submit">Post</button>
+        {isLoading ? <p>Posting comment...</p> : null}
+        {hasPosted ? <p>Comment added!</p> : null}
+      </form>
       <ul className="comments-flex-container">
         {comments.length === 0
           ? "No comments - be the first to post one!"
