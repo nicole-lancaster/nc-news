@@ -8,20 +8,19 @@ const Comments = ({ article_id, comments, setComments }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (typeof article_id !== "undefined" && article_id !== "") {
-      fetchCommentsByArticleID(article_id)
-        .then((comments) => {
-          setComments(comments);
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setIsError(true);
-          setIsLoading(false);
-        });
-    }
+    fetchCommentsByArticleID(article_id)
+      .then((comments) => {
+        setComments(comments);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsError(true);
+        setIsLoading(false);
+      });
   }, [article_id, setComments]);
 
-  if (isError) return <p>Sorry, we are unable to load comments at the moment</p>;
+  if (isError)
+    return <p>Sorry, we are unable to load comments at the moment</p>;
   if (isLoading) return <p>Loading comments...</p>;
 
   return (

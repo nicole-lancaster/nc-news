@@ -16,12 +16,9 @@ function App() {
           path="/"
           element={
             <ArticleList articles={articles} setArticles={setArticles} />
-            
           }
         />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
-        <Route path="/articles/:article_id/comments" element={<SingleArticle />} />
-
       </Routes>
     </div>
   );
