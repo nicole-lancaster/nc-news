@@ -2,16 +2,23 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchSingleArticle } from "../api";
 import { sqlDateFormatter } from "../utils.js";
+import Comments from "../components/Comments.jsx";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchSingleArticle(article_id).then((singleArticle) => {
       setSingleArticle(singleArticle);
+      setIsLoading(false);
     });
   }, [article_id]);
+
+  if (isLoading) return <p>Loading article...</p>
 
   return (
     <div>
@@ -31,6 +38,11 @@ function SingleArticle() {
           </p>
         </div>
       </article>
+      <Comments
+        comments={comments}
+        setComments={setComments}
+        article_id={article_id}
+      />
     </div>
   );
 }
