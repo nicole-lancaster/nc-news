@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchSingleArticle } from "../api";
+import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -18,7 +20,24 @@ function SingleArticle() {
     });
   }, [article_id]);
 
-  if (isLoading) return <p>Loading article...</p>
+  const handleVoteClick = () => {
+    setSingleArticle({
+      ...singleArticle,
+      votes: singleArticle.votes + 1,
+    });
+    setDisabled(true);
+    updateArticleVote(article_id).catch(() => {
+      setIsError(true);
+      setSingleArticle({
+        ...singleArticle,
+        votes: singleArticle.votes - 1,
+      });
+      setDisabled(false);
+    });
+  };
+
+  if (isLoading) return <p>Loading article...</p>;
+  if (isError) return <p>Unable to like article at this time 🙁</p>;
 
   return (
     <div>
@@ -33,9 +52,14 @@ function SingleArticle() {
         <p className="single-article-body">{singleArticle.body}</p>
         <div className="single-article-likes-and-comments">
           <p className="single-article-votes">{singleArticle.votes} likes</p>
-          <p className="single-article-comments">
-            {singleArticle.comment_count} comments
-          </p>
+          <button
+            className="single-article-like-btn"
+            disabled={disabled}
+            onClick={handleVoteClick}
+          >
+            Like this article
+          </button>
+          <p className="single-article-comments">{comments.length} comments</p>
         </div>
       </article>
       <Comments

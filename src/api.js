@@ -21,7 +21,18 @@ export const fetchCommentsByArticleID = (article_id) => {
     .get(
       `https://nc-news-portfolio.onrender.com/api/articles/${article_id}/comments`
     )
-    .then(( {data} ) => {
+    .then(({ data }) => {
       return data.comments;
-    })
+    });
+};
+
+export const updateArticleVote = (article_id) => {
+  return axios
+    .patch(
+      `https://nc-news-portfolio.onrender.com/api/articles/${article_id}`,
+      { inc_votes: 1 }
+    )
+    .then(({data}) => {
+     return data.article
+    });
 };
