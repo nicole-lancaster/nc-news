@@ -1,8 +1,15 @@
-const Header = () => {
+import UserLogin from "./UserLogin";
+
+const Header = ({ isLoggedIn, setIsLoggedIn, users, setUsers }) => {
   return (
-    <header className="Header">
-      <h1>NC-News</h1>
-    </header>
+    <div>
+      <header className="Header">
+        <h1>NC-News</h1>
+      </header>
+      <nav>
+        <UserLogin isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      </nav>
+    </div>
   );
 };
 

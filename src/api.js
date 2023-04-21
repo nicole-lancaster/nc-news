@@ -40,9 +40,18 @@ export const updateArticleVote = (article_id) => {
 export const postComment = (comment) => {
   return axios
     .post(
-      `https://nc-news-portfolio.onrender.com/api/articles/${comment.article_id}/comments`, comment
+      `https://nc-news-portfolio.onrender.com/api/articles/${comment.article_id}/comments`,
+      comment
     )
-    .then(( response ) => {
-      return response
+    .then((response) => {
+      return response;
+    });
+};
+
+export const fetchUsers = () => {
+  return axios
+    .get("https://nc-news-portfolio.onrender.com/api/users")
+    .then(({ data }) => {
+      return data.users;
     });
 };
