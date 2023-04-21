@@ -4,11 +4,12 @@ const SingleUser = ({ user, currentUser, setCurrentUser, setIsLoggedIn, isLogged
   const [isLoading, setIsLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-console.log(currentUser)
+  const handleLoginClick = (user) => {
+    console.log(user)
 
-  const handleLoginClick = (event) => {
     setDisabled(true);
     setIsLoggedIn(true)
+    setCurrentUser(user)
   };
 
   if (isLoading) return <p>Logging in...</p>;
@@ -24,7 +25,7 @@ console.log(currentUser)
           alt={user.username}
         />
       </li>
-      <button onClick={handleLoginClick} disabled={disabled}>
+      <button onClick={(user) => handleLoginClick(user)} disabled={disabled}>
         Pretend to be {user.name}
       </button>
       {disabled ? <p>You are now logged in as {user.name}</p> : null}
