@@ -2,7 +2,14 @@ import SingleUser from "./SingleUser.jsx";
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
 
-const UsersList = ({ users, setUsers, currentUser, setCurrentUser, setIsLoggedIn, isLoggedIn }) => {
+const UsersList = ({
+  users,
+  setUsers,
+  currentUser,
+  setCurrentUser,
+  setIsLoggedIn,
+  isLoggedIn,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,8 +32,6 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser, setIsLoggedIn
               user={user}
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
-              users={users} setUsers={setUsers}
-              isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
             />
           );
         })}

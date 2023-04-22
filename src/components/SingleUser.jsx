@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-const SingleUser = ({
-  user,
-  currentUser,
-  setCurrentUser,
-}) => {
+const SingleUser = ({ user, currentUser, setCurrentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoginClick = (user) => {
@@ -26,10 +22,15 @@ const SingleUser = ({
           alt={user.username}
         />
       </li>
-      <button onClick={() => handleLoginClick(user)} disabled={user.username === currentUser?.username}>
+      <button
+        onClick={() => handleLoginClick(user)}
+        disabled={user.username === currentUser?.username}
+      >
         Pretend to be {user.name}
       </button>
-      {currentUser ===  user ? <p>You are now logged in as {user.name}!</p> : null}
+      {currentUser === user ? (
+        <p>You are now logged in as {user.name}!</p>
+      ) : null}
     </div>
   );
 };
