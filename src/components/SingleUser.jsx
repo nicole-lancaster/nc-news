@@ -7,16 +7,15 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
     setIsLoading(true);
     setCurrentUser(user);
     setIsLoading(false);
-    console.log(currentUser);
   };
 
   if (isLoading) return <p>Logging in...</p>;
 
   return (
     <div className="single-user">
-      <li>
+      <li className="single-user-name">
         {user.name}
-        <p>username: {user.username}</p>
+        <p className="single-user-username">{user.username}</p>
         <img
           className="user-list-avatar"
           src={user.avatar_url}
@@ -24,13 +23,16 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
         />
       </li>
       <button
+        className="user-pretend-to-be-btn"
         onClick={() => handleLoginClick(user)}
         disabled={user.username === currentUser?.username}
       >
         Pretend to be {user.name}
       </button>
       {currentUser === user ? (
-        <p>You are now logged in as {user.name}!</p>
+        <p className="user-logged-in-as-msg">
+          You are now logged in as {user.name}!
+        </p>
       ) : null}
     </div>
   );

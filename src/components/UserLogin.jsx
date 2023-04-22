@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
 const UserLogin = ({ currentUser }) => {
-  const [disabled, setDisabled] = useState(false);
-
+  if (currentUser === undefined) {
+    return <p>Please login as a user</p>;
+  }
   return (
-    <section>
-      {currentUser === undefined ? <p>Please login as a user</p> : null}
-      <Link to={`/users`}>
-        <button disabled={disabled}>Login here</button>
-      </Link>
+    <section className="user-login-flex-container">
+      <p className="user-login-message">Logged in as {currentUser.username}!</p>
+      <img
+        className="user-login-avatar"
+        src={currentUser.avatar_url}
+        alt={currentUser.username}
+      />
     </section>
   );
 };

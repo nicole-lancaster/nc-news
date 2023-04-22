@@ -24,7 +24,7 @@ function App() {
         />
         <Route
           path="/articles/:article_id"
-          element={<SingleArticle currentUser={currentUser} />}
+          element={<SingleArticle currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
         />
         <Route
           path="/users"

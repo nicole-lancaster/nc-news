@@ -12,7 +12,7 @@ const Comments = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [isPostingError, setPostingError] = useState(false)
+  const [isPostingError, setPostingError] = useState(false);
   const [commentBody, setCommentBody] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
@@ -34,7 +34,7 @@ const Comments = ({
     setIsLoading(true);
     const newComment = {
       article_id: article_id,
-      username: currentUser,
+      username: currentUser?.username,
       body: commentBody,
     };
     postComment(newComment)
@@ -45,17 +45,16 @@ const Comments = ({
 
         setIsLoading(false);
       })
-      .catch(() => {
-        setPostingError(true)
+      .catch((err) => {
+        setPostingError(true);
       });
   };
 
   if (isError)
     return <p>Sorry, we are unable to load comments at the moment</p>;
 
-    if (isPostingError)
+  if (isPostingError)
     return <p>Sorry, we are unable to post your comment at the moment</p>;
-
 
   if (isLoading) return <p>Loading comments...</p>;
 
