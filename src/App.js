@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
+import NavBar from "./components/NavBar";
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Header currentUser={currentUser} />
-
+      <NavBar currentUser={currentUser} users={users} />
       <Routes>
         <Route
           path="/"
@@ -24,7 +25,12 @@ function App() {
         />
         <Route
           path="/articles/:article_id"
-          element={<SingleArticle currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+          element={
+            <SingleArticle
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
         />
         <Route
           path="/users"
