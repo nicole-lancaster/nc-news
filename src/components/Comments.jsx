@@ -11,6 +11,7 @@ const Comments = ({
   setCurrentUser,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isPostingError, setPostingError] = useState(false);
   const [commentBody, setCommentBody] = useState("");
@@ -31,7 +32,7 @@ const Comments = ({
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
-    setIsLoading(true);
+    setIsCommentLoading(true);
     const newComment = {
       article_id: article_id,
       username: currentUser?.username,
@@ -42,7 +43,7 @@ const Comments = ({
         setHasPosted(true);
         setComments([response.data.comment, ...comments]);
         setCurrentUser(currentUser);
-        setIsLoading(false);
+        setIsCommentLoading(false);
         setCommentBody('')
       })
       .catch((err) => {
@@ -54,9 +55,10 @@ const Comments = ({
     return <p>Sorry, we are unable to load comments at the moment</p>;
 
   if (isPostingError)
-    return <p>Sorry, we are unable to post your comment at the moment</p>;
+    return <p>Sorry, we are unable to post your comment at the moment. Check you are logged in then try again!</p>;
 
   if (isLoading) return <p>Loading comments...</p>;
+  if (isCommentLoading) return <p>Posting comment...</p>
 
   return (
     <section className="Comments">
