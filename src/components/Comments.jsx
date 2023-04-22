@@ -42,8 +42,8 @@ const Comments = ({
         setHasPosted(true);
         setComments([response.data.comment, ...comments]);
         setCurrentUser(currentUser);
-
         setIsLoading(false);
+        setCommentBody('')
       })
       .catch((err) => {
         setPostingError(true);
