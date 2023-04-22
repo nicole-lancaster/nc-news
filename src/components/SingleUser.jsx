@@ -7,6 +7,7 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
     setIsLoading(true);
     setCurrentUser(user);
     setIsLoading(false);
+    console.log(currentUser);
   };
 
   if (isLoading) return <p>Logging in...</p>;

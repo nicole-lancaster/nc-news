@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header currentUser={currentUser} />
 
       <Routes>
         <Route
@@ -22,7 +22,10 @@ function App() {
             <ArticleList articles={articles} setArticles={setArticles} />
           }
         />
-        <Route path="/articles/:article_id" element={<SingleArticle currentUser={currentUser} />} />
+        <Route
+          path="/articles/:article_id"
+          element={<SingleArticle currentUser={currentUser} />}
+        />
         <Route
           path="/users"
           element={

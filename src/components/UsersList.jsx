@@ -2,14 +2,7 @@ import SingleUser from "./SingleUser.jsx";
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
 
-const UsersList = ({
-  users,
-  setUsers,
-  currentUser,
-  setCurrentUser,
-  setIsLoggedIn,
-  isLoggedIn,
-}) => {
+const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

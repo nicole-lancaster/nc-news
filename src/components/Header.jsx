@@ -1,13 +1,13 @@
 import UserLogin from "./UserLogin";
 
-const Header = ({ isLoggedIn, setIsLoggedIn, users, setUsers }) => {
+const Header = ({ users, currentUser }) => {
   return (
     <div>
       <header className="Header">
         <h1>NC-News</h1>
       </header>
       <nav>
-        <UserLogin isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <UserLogin currentUser={currentUser} users={users} />
       </nav>
     </div>
   );

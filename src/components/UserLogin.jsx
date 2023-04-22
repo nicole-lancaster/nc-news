@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const UserLogin = ({
-  user,
-  signedInUser,
-  ChooseUser,
-  isLoggedIn,
-  setIsLoggedIn,
-}) => {
+const UserLogin = ({ currentUser }) => {
+  const [disabled, setDisabled] = useState(false);
+
   return (
-    <Link to={`/users`}>
-      <p>Login here</p>
-    </Link>
+    <section>
+      {currentUser === undefined ? <p>Please login as a user</p> : null}
+      <Link to={`/users`}>
+        <button disabled={disabled}>Login here</button>
+      </Link>
+    </section>
   );
 };
 
