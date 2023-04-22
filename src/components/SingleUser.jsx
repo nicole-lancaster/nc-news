@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const SingleUser = ({ user, currentUser, setCurrentUser, setIsLoggedIn, isLoggedIn }) => {
+const SingleUser = ({
+  user,
+  currentUser,
+  setCurrentUser,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [disabled, setDisabled] = useState(false);
 
   const handleLoginClick = (user) => {
-    console.log(user)
-
-    setDisabled(true);
-    setIsLoggedIn(true)
-    setCurrentUser(user)
+    setIsLoading(true);
+    setCurrentUser(user);
+    setIsLoading(false);
   };
 
   if (isLoading) return <p>Logging in...</p>;
@@ -25,10 +26,10 @@ const SingleUser = ({ user, currentUser, setCurrentUser, setIsLoggedIn, isLogged
           alt={user.username}
         />
       </li>
-      <button onClick={(user) => handleLoginClick(user)} disabled={disabled}>
+      <button onClick={() => handleLoginClick(user)} disabled={user.username === currentUser?.username}>
         Pretend to be {user.name}
       </button>
-      {disabled ? <p>You are now logged in as {user.name}</p> : null}
+      {currentUser ===  user ? <p>You are now logged in as {user.name}!</p> : null}
     </div>
   );
 };

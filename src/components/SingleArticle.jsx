@@ -4,7 +4,7 @@ import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
 
-function SingleArticle() {
+function SingleArticle({currentUser}) {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [comments, setComments] = useState([]);
@@ -66,6 +66,7 @@ function SingleArticle() {
         comments={comments}
         setComments={setComments}
         article_id={article_id}
+        currentUser={currentUser}
       />
     </div>
   );

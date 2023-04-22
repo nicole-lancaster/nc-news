@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 import { sqlDateFormatter } from "../utils.js";
 import { postComment } from "../api.js";
 
-const Comments = ({ article_id, comments, setComments }) => {
+const Comments = ({
+  article_id,
+  comments,
+  setComments,
+  currentUser,
+  setCurrentUser,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [username, setUsername] = useState("");
+  const [isPostingError, setPostingError] = useState(false)
   const [commentBody, setCommentBody] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
@@ -28,22 +34,28 @@ const Comments = ({ article_id, comments, setComments }) => {
     setIsLoading(true);
     const newComment = {
       article_id: article_id,
-      username: username,
+      username: currentUser,
       body: commentBody,
     };
     postComment(newComment)
       .then((response) => {
         setHasPosted(true);
         setComments([response.data.comment, ...comments]);
+        setCurrentUser(currentUser);
+
         setIsLoading(false);
       })
-      .catch((err) => {
-        setIsError(err);
+      .catch(() => {
+        setPostingError(true)
       });
   };
 
   if (isError)
     return <p>Sorry, we are unable to load comments at the moment</p>;
+
+    if (isPostingError)
+    return <p>Sorry, we are unable to post your comment at the moment</p>;
+
 
   if (isLoading) return <p>Loading comments...</p>;
 
@@ -51,9 +63,7 @@ const Comments = ({ article_id, comments, setComments }) => {
     <section className="Comments">
       <h3>Comments</h3>
       <form onSubmit={handleCommentSubmit} className="postCommentForm">
-        <label htmlFor="comment-input-box">
-          post your comment in the box below!
-        </label>
+        <label htmlFor="comment-input-box">Post your comment!</label>
         <textarea
           required
           type="text"
@@ -63,22 +73,7 @@ const Comments = ({ article_id, comments, setComments }) => {
             setCommentBody(event.target.value);
           }}
         />
-        <label htmlFor="username-input-box">What is your username?</label>
-        <select
-          required
-          value={username}
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        >
-          <option value="" selected disabled>
-            Choose your username
-          </option>
-          <option>grumpy19</option>
-          <option>happyamy2016</option>
-          <option>jessjelly</option>
-          <option>weegembump</option>
-        </select>
+
         <button type="submit">Post</button>
         {isLoading ? <p>Posting comment...</p> : null}
         {hasPosted ? <p>Comment added!</p> : null}

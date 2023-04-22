@@ -9,12 +9,11 @@ import UsersList from "./components/UsersList";
 function App() {
   const [articles, setArticles] = useState([]);
   const [users, setUsers] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState();
 
   return (
     <div className="App">
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Header />
 
       <Routes>
         <Route
@@ -23,7 +22,7 @@ function App() {
             <ArticleList articles={articles} setArticles={setArticles} />
           }
         />
-        <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route path="/articles/:article_id" element={<SingleArticle currentUser={currentUser} />} />
         <Route
           path="/users"
           element={
@@ -32,7 +31,6 @@ function App() {
               setUsers={setUsers}
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
-              isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}
             />
           }
         />
