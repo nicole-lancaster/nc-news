@@ -19,12 +19,9 @@ const NavBar = ({ currentUser, users }) => {
           <Link to={`/users`}>Users</Link>
         </li>
         <li>
-          <Link>Contact me</Link>
-        </li>
-        <li>
-          <Link to={`/users`}>
-            <UserLogin currentUser={currentUser} users={users} />
-          </Link>
+        <UserLogin currentUser={currentUser} users={users} />
+         </li>
+         <li>
           <Link to={`/users`}>
             <button onClick={handleLoginClick} disabled={disabled}>
               Login
