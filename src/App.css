@@ -167,3 +167,8 @@
   font-weight: 600;
   font-size: 40px;
 }
+
+.single-topic:hover {
+  background-color: orange;
+  cursor: pointer;
+}
