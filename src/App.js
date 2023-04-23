@@ -27,7 +27,10 @@ function App() {
           path="/"
           element={
             <>
-              <TopicsList setSelectedTopic={setSelectedTopic} />
+              <TopicsList
+                selectedTopic={selectedTopic}
+                setSelectedTopic={setSelectedTopic}
+              />
               <ArticleList
                 articles={articles}
                 setArticles={setArticles}

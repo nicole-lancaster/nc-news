@@ -1,7 +1,7 @@
 import { fetchTopics } from "../api.js";
 import { useEffect, useState } from "react";
 
-const TopicList = ({ setSelectedTopic }) => {
+const TopicList = ({ selectedTopic, setSelectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [topics, setTopics] = useState([]);
 
@@ -28,7 +28,11 @@ const TopicList = ({ setSelectedTopic }) => {
             <li
               onClick={() => handleTopicClick(topic)}
               key={topic.slug}
-              className="single-topic"
+              className={`single-topic ${
+                topic.slug === selectedTopic
+                  ? "single-topic-currently-selected"
+                  : ""
+              }`}
             >
               {topic.slug}
             </li>

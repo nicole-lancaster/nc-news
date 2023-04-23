@@ -156,19 +156,24 @@
 .topic-list-flex-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .single-topic {
-  margin: 50px;
+  margin: 20px;
   padding: 10px;
+  width: 500px;
   list-style-type: none;
   border: 2px solid black;
   background-color: aquamarine;
   font-weight: 600;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .single-topic:hover {
-  background-color: orange;
   cursor: pointer;
+}
+
+.single-topic-currently-selected {
+  background-color: orange;
 }
