@@ -17,12 +17,24 @@ const TopicList = ({ selectedTopic, setSelectedTopic }) => {
     setSelectedTopic(topic.slug);
   };
 
+  const handleAllClick = () => {
+    setSelectedTopic("");
+  };
+
   if (isLoading) return <p>Loading list of topics...</p>;
 
   return (
     <section className="topic-list-flex-container">
       <h2>Topics</h2>
       <ul>
+        <li
+          onClick={() => handleAllClick()}
+          className={`single-topic ${
+            !selectedTopic ? "single-topic-currently-selected" : ""
+          }`}
+        >
+          all
+        </li>
         {topics.map((topic) => {
           return (
             <li
