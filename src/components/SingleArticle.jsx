@@ -10,7 +10,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [likeBtnDisabled, setLikeBtnDisabled] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,23 +21,25 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   }, [article_id]);
 
   const handleVoteClick = () => {
-    setSingleArticle({
-      ...singleArticle,
-      votes: singleArticle.votes + 1,
-    });
-    setDisabled(true);
-    updateArticleVote(article_id).catch(() => {
-      setIsError(true);
+    if (currentUser) {
       setSingleArticle({
         ...singleArticle,
-        votes: singleArticle.votes - 1,
+        votes: singleArticle.votes + 1,
       });
-      setDisabled(false);
-    });
+      setLikeBtnDisabled(true);
+      updateArticleVote(article_id).catch(() => {
+        setIsError(true);
+        setSingleArticle({
+          ...singleArticle,
+          votes: singleArticle.votes - 1,
+        });
+      });
+    }
+    setLikeBtnDisabled(true);
   };
 
   if (isLoading) return <p>Loading article...</p>;
-  if (isError) return <p>Unable to like article at this time 🙁</p>;
+  if (isError) return <p>Unable to like article at this time 🙁 </p>;
 
   return (
     <div>
@@ -54,11 +56,14 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           <p className="single-article-votes">{singleArticle.votes} likes</p>
           <button
             className="single-article-like-btn"
-            disabled={disabled}
+            disabled={likeBtnDisabled}
             onClick={handleVoteClick}
           >
             Like this article
           </button>
+          {!currentUser && likeBtnDisabled === true ? (
+            <p>You need to login first!</p>
+          ) : null}
           <p className="single-article-comments">{comments.length} comments</p>
         </div>
       </article>
