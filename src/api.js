@@ -55,3 +55,11 @@ export const fetchUsers = () => {
       return data.users;
     });
 };
+
+export const fetchTopics = () => {
+  return axios
+    .get("https://nc-news-portfolio.onrender.com/api/topics")
+    .then(({ data }) => {
+      return data.topics;
+    });
+};
