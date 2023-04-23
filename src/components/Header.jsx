@@ -1,4 +1,4 @@
-const Header = ({ users, currentUser }) => {
+const Header = () => {
   return (
     <div>
       <header className="Header">

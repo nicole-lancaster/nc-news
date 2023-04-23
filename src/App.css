@@ -153,3 +153,17 @@
 .user-pretend-to-be-btn {
   width: 120px;
 }
+.topic-list-flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-topic {
+  margin: 50px;
+  padding: 10px;
+  list-style-type: none;
+  border: 2px solid black;
+  background-color: aquamarine;
+  font-weight: 600;
+  font-size: 40px;
+}
