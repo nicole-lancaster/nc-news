@@ -44,21 +44,25 @@ const Comments = ({
         setComments([response.data.comment, ...comments]);
         setCurrentUser(currentUser);
         setIsCommentLoading(false);
-        setCommentBody('')
+        setCommentBody("");
       })
-      .catch((err) => {
+      .catch(() => {
+        setIsCommentLoading(false);
         setPostingError(true);
+        if (isPostingError) { 
+          return <p>Sorry, we are unable to load comments at the moment</p>}
+       
+        else return <p>Check you are logged in then try again!</p>
       });
   };
 
   if (isError)
-    return <p>Sorry, we are unable to load comments at the moment</p>;
+    if (isLoading)
+      // if (isPostingError)
+      //   return <p>Sorry, we are unable to post your comment at the moment. Check you are logged in then try again!</p>;
 
-  if (isPostingError)
-    return <p>Sorry, we are unable to post your comment at the moment. Check you are logged in then try again!</p>;
-
-  if (isLoading) return <p>Loading comments...</p>;
-  if (isCommentLoading) return <p>Posting comment...</p>
+      return <p>Loading comments...</p>;
+  if (isCommentLoading) return <p>Posting comment...</p>;
 
   return (
     <section className="Comments">
