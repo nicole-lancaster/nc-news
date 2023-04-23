@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import UserLogin from "./UserLogin.jsx";
-import { useState } from "react";
 
-const NavBar = ({ currentUser, users }) => {
-  const [disabled, setDisabled] = useState(false);
-
+const NavBar = ({ currentUser, users, setCurrentUser }) => {
   const handleLoginClick = () => {
-    setDisabled(true);
+    if (currentUser) {
+      setCurrentUser(undefined);
+    }
   };
 
+  const loginBtn = (
+    <button onClick={handleLoginClick}>
+      {currentUser ? `Logout` : `Login`}
+    </button>
+  );
   return (
     <nav>
       <ul>
@@ -19,14 +23,14 @@ const NavBar = ({ currentUser, users }) => {
           <Link to={`/users`}>Users</Link>
         </li>
         <li>
-        <UserLogin currentUser={currentUser} users={users} />
-         </li>
-         <li>
-          <Link to={`/users`}>
-            <button onClick={handleLoginClick} disabled={disabled}>
-              Login
-            </button>
-          </Link>
+          <UserLogin currentUser={currentUser} users={users} />
+        </li>
+        <li>
+          {!currentUser ? (
+            <Link to={`/users`}>{loginBtn}</Link>
+          ) : (
+            <>{loginBtn}</>
+          )}
         </li>
       </ul>
     </nav>

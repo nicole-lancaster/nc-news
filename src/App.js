@@ -17,7 +17,11 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <NavBar currentUser={currentUser} users={users} />
+      <NavBar
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        users={users}
+      />
       <Routes>
         <Route
           path="/"
