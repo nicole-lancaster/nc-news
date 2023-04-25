@@ -29,7 +29,7 @@ const NavBar = ({ currentUser, users, setCurrentUser }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto nav-bar-flex-container">
+          <Nav className="me-auto">
             <Nav.Item>
               <Link className="nav-links" to="/">
                 Home

@@ -1,5 +1,6 @@
 import { fetchTopics } from "../api.js";
 import { useEffect, useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 const TopicList = ({ selectedTopic, setSelectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +22,13 @@ const TopicList = ({ selectedTopic, setSelectedTopic }) => {
     setSelectedTopic("");
   };
 
-  if (isLoading) return <p>Loading list of topics...</p>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner animation="border" role="status"></Spinner>
+        <p>Loading list of topics...</p>
+      </div>
+    );
 
   return (
     <section className="topic-list-flex-container">
