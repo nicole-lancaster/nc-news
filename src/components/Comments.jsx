@@ -53,7 +53,8 @@ const Comments = ({
       });
   };
 
-  if (isError) if (isLoading) return <p>Loading comments...</p>;
+  if (isError) return <p>Unable to load comments at this time</p>;
+  if (isLoading) return <p>Loading comments...</p>;
   if (isCommentLoading) return <p>Posting comment...</p>;
 
   return (
@@ -75,8 +76,8 @@ const Comments = ({
         {hasPosted && currentUser ? <p>Comment added!</p> : null}{" "}
         {isPostingError && !currentUser ? (
           <p>
-            Sorry, we are unable to post your comment at the moment. Check you
-            are logged in then try again!
+            Sorry, we are unable to post your comment. Check you are logged in
+            then try again!
           </p>
         ) : null}
       </form>
