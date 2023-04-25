@@ -44,21 +44,18 @@ const Comments = ({
         setComments([response.data.comment, ...comments]);
         setCurrentUser(currentUser);
         setIsCommentLoading(false);
-        setCommentBody('')
+        setCommentBody("");
       })
-      .catch((err) => {
+      .catch(() => {
+        setIsCommentLoading(false);
+        setHasPosted(false);
         setPostingError(true);
       });
   };
 
-  if (isError)
-    return <p>Sorry, we are unable to load comments at the moment</p>;
-
-  if (isPostingError)
-    return <p>Sorry, we are unable to post your comment at the moment. Check you are logged in then try again!</p>;
-
+  if (isError) return <p>Unable to load comments at this time</p>;
   if (isLoading) return <p>Loading comments...</p>;
-  if (isCommentLoading) return <p>Posting comment...</p>
+  if (isCommentLoading) return <p>Posting comment...</p>;
 
   return (
     <section className="Comments">
@@ -74,10 +71,15 @@ const Comments = ({
             setCommentBody(event.target.value);
           }}
         />
-
         <button type="submit">Post</button>
-        {isLoading ? <p>Posting comment...</p> : null}
-        {hasPosted ? <p>Comment added!</p> : null}
+        {isLoading && currentUser ? <p>Posting comment...</p> : null}
+        {hasPosted && currentUser ? <p>Comment added!</p> : null}{" "}
+        {isPostingError && !currentUser ? (
+          <p>
+            Sorry, we are unable to post your comment. Check you are logged in
+            then try again!
+          </p>
+        ) : null}
       </form>
       <ul className="comments-flex-container">
         {comments.length === 0
