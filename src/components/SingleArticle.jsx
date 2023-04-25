@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
+import Spinner from "react-bootstrap/Spinner";
 
 function SingleArticle({ currentUser, setCurrentUser }) {
   const { article_id } = useParams();
@@ -38,7 +39,14 @@ function SingleArticle({ currentUser, setCurrentUser }) {
     setLikeBtnDisabled(true);
   };
 
-  if (isLoading) return <p>Loading article...</p>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner animation="border" role="status"></Spinner>
+        <p>Loading article...</p>
+      </div>
+    );
+
   if (isError) return <p>Unable to like article at this time 🙁 </p>;
 
   return (

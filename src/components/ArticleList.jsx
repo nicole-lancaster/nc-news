@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchArticles } from "../api.js";
 import { Link } from "react-router-dom";
 import { sqlDateFormatter } from "../utils.js";
+import Spinner from "react-bootstrap/Spinner";
 
 const ArticleList = ({ articles, setArticles, selectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +15,13 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
     });
   }, [setArticles]);
 
-  if (isLoading) return <p>Loading list of articles...</p>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner animation="border" role="status"></Spinner>
+        <p>Loading list of articles...</p>
+      </div>
+    );
 
   return (
     <section>
