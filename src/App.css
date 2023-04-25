@@ -16,12 +16,21 @@
   padding: 30px;
 }
 
+.nav-bar-flex-container {
+  justify-content: center;
+}
+
+.nav-links {
+  margin: 10px;
+  font-size: xx-large;
+  text-decoration: none;
+}
+
 .user-login-flex-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 250px;
-  /* border: 2px solid black; */
 }
 
 .user-login-message {
