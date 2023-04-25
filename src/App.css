@@ -76,6 +76,11 @@
   align-self: center;
 }
 
+.single-article-img {
+  align-self: center;
+  max-width: 900px;
+}
+
 .single-article-author-date {
   padding: 10px;
   font-style: italic;
@@ -95,6 +100,7 @@
 }
 .single-article-body {
   padding: 10px;
+  font-size: large;
   max-width: 700px;
   align-self: center;
 }

@@ -53,7 +53,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
     <div>
       <article className="SingleArticle">
         <h2 className="single-article-title">{singleArticle.title}</h2>
-        <img src={singleArticle.article_img_url} alt={singleArticle.title} />
+        <img src={singleArticle.article_img_url} alt={singleArticle.title} className="single-article-img"/>
         <p className="single-article-author-date">
           Written by {singleArticle.author} on{" "}
           {sqlDateFormatter(singleArticle.created_at)}

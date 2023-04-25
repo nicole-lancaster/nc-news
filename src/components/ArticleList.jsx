@@ -3,6 +3,8 @@ import { fetchArticles } from "../api.js";
 import { Link } from "react-router-dom";
 import { sqlDateFormatter } from "../utils.js";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 const ArticleList = ({ articles, setArticles, selectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,18 +39,22 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                 to={`/articles/${article.article_id}`}
               >
                 <li className="article-flex-item">
-                  <img
+                  <Card style={{ width: "30rem" }}>
+                    <Card.Img variant="top" src={article.article_img_url} />
+                    <Card.Body>
+                      <Card.Title> {article.title}</Card.Title>
+                      <Card.Text>
+                        Written by {article.author} on
+                        {sqlDateFormatter(article.created_at)}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                  {/* <img
                     className="article-list-article-img"
-                    src={article.article_img_url}
                     alt={article.title}
                   />
-                  <h2 className="article-list-article-title">
-                    {article.title}{" "}
-                  </h2>
-                  <p className="article-list-article-date">
-                    Written by {article.author} on
-                    {sqlDateFormatter(article.created_at)}
-                  </p>
+                  <h2 className="article-list-article-title"> </h2>
+                  <p className="article-list-article-date"></p> */}
                 </li>
               </Link>
             );
