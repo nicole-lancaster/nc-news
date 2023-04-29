@@ -14,8 +14,12 @@
 }
 
 .nav-bar {
-  border: 2px solid black;
   font-size: 10px;
+}
+
+.nav-item {
+  width: 60px;
+  height: 60px;
 }
 
 .nav-links {
