@@ -1,7 +1,6 @@
 import "./App.css";
 import ArticleList from "./components/ArticleList.jsx";
 import SingleArticle from "./components/SingleArticle";
-import Header from "./components/Header";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
@@ -17,7 +16,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <NavBar
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}

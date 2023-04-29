@@ -1,10 +1,9 @@
 const UserLogin = ({ currentUser }) => {
   if (currentUser === undefined) {
-    return <p>Please login as a user</p>;
+    return <p>Please login</p>;
   }
   return (
-    <section className="user-login-flex-container">
-      <p className="user-login-message">Logged in as {currentUser.username}!</p>
+    <section>
       <img
         className="user-login-avatar"
         src={currentUser.avatar_url}
