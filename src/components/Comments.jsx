@@ -2,7 +2,6 @@ import { fetchCommentsByArticleID } from "../api";
 import { useEffect, useState } from "react";
 import { sqlDateFormatter } from "../utils.js";
 import { postComment } from "../api.js";
-import Spinner from "react-bootstrap/Spinner";
 
 const Comments = ({
   article_id,
@@ -59,16 +58,15 @@ const Comments = ({
   if (isLoading)
     return (
       <div>
-        <Spinner animation="border" role="status"></Spinner>
         <p>Loading comments...</p>
       </div>
     );
   if (isCommentLoading) return <p>Posting comment...</p>;
 
   return (
-    <section className="Comments">
+    <section>
       <h3>Comments</h3>
-      <form onSubmit={handleCommentSubmit} className="postCommentForm">
+      <form onSubmit={handleCommentSubmit}>
         <label htmlFor="comment-input-box">Post your comment!</label>
         <textarea
           required

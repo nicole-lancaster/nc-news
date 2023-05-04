@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
 import NavBar from "./components/NavBar";
 import TopicsList from "./components/TopicsList.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [articles, setArticles] = useState([]);

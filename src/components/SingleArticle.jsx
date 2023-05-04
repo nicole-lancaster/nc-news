@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
-import Spinner from "react-bootstrap/Spinner";
 
 function SingleArticle({ currentUser, setCurrentUser }) {
   const { article_id } = useParams();
@@ -42,7 +41,6 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   if (isLoading)
     return (
       <div>
-        <Spinner animation="border" role="status"></Spinner>
         <p>Loading article...</p>
       </div>
     );
@@ -53,7 +51,11 @@ function SingleArticle({ currentUser, setCurrentUser }) {
     <div>
       <article className="SingleArticle">
         <h2 className="single-article-title">{singleArticle.title}</h2>
-        <img src={singleArticle.article_img_url} alt={singleArticle.title} className="single-article-img"/>
+        <img
+          src={singleArticle.article_img_url}
+          alt={singleArticle.title}
+          className="single-article-img"
+        />
         <p className="single-article-author-date">
           Written by {singleArticle.author} on{" "}
           {sqlDateFormatter(singleArticle.created_at)}
@@ -62,11 +64,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
         <p className="single-article-body">{singleArticle.body}</p>
         <div className="single-article-likes-and-comments">
           <p className="single-article-votes">{singleArticle.votes} likes</p>
-          <button
-            className="single-article-like-btn"
-            disabled={likeBtnDisabled}
-            onClick={handleVoteClick}
-          >
+          <button disabled={likeBtnDisabled} onClick={handleVoteClick}>
             Like this article
           </button>
           {!currentUser && likeBtnDisabled === true ? (
