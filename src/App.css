@@ -56,15 +56,6 @@
   align-self: center;
 }
 
-.article-list-article-img {
-  padding: 30px;
-  margin-top: 50px;
-}
-
-.article-list-article-date {
-  font-style: italic;
-}
-
 .SingleArticle {
   display: flex;
   flex-wrap: wrap;
@@ -101,6 +92,7 @@
 .single-article-comments {
   padding: 10px;
 }
+
 .single-article-body {
   padding: 10px;
   font-size: large;

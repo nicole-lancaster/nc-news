@@ -1,7 +1,6 @@
 import SingleUser from "./SingleUser.jsx";
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
-import Spinner from "react-bootstrap/Spinner";
 
 const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +16,6 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
   if (isLoading)
     return (
       <div>
-        <Spinner animation="border" role="status"></Spinner>
         <p>Loading all users...</p>
       </div>
     );
