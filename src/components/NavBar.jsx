@@ -2,16 +2,15 @@ import { useEffect } from "react";
 import { fetchTopics } from "../api.js";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Popover, Transition } from "@headlessui/react";
+import { Dialog, Popover, Transition } from "@headlessui/react";
 import UserLogin from "./UserLogin.jsx";
 import {
-  HomeIcon,
-  UsersIcon,
   ArrowLongRightIcon,
   ArrowLongLeftIcon,
   NewspaperIcon,
   Bars3Icon,
   ChevronDownIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
@@ -62,7 +61,6 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
               className="text-sm font-semibold leading-6 text-gray-900"
               to="/"
             >
-              {/* <HomeIcon className="h-8 w-8 text-black-500" /> */}
               Home
             </Link>
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -105,33 +103,47 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             className="text-sm font-semibold leading-6 text-gray-900"
             to="/users"
           >
-            {/* <UsersIcon className="h-8 w-8 text-black-500" /> */}
             Users
           </Link>
-        </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <UserLogin currentUser={currentUser} users={users} />
-          {!currentUser ? (
-            <>
-              <Link
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <UserLogin currentUser={currentUser} users={users} />
+            {!currentUser ? (
+              <>
+                <Link
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                  to={`/users`}
+                >
+                  Login
+                  <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
+                </Link>
+              </>
+            ) : (
+              <p
                 className="text-sm font-semibold leading-6 text-gray-900"
-                to={`/users`}
+                onClick={handleLogoutClick}
               >
-                Login
-                <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
-              </Link>
-            </>
-          ) : (
-            <p
-              className="text-sm font-semibold leading-6 text-gray-900"
-              onClick={handleLogoutClick}
-            >
-              Logout
-              <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
-            </p>
-          )}
-        </div>
+                Logout
+                <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
+              </p>
+            )}
+          </div>
+        </Popover.Group>
       </nav>
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-10" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between">
+            <p className="-m-1.5 p-1.5"></p>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
     </header>
   );
 };

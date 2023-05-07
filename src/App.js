@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
 import NavBar from "./components/NavBar";
-import TopicsList from "./components/TopicsList.jsx";
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -20,15 +19,13 @@ function App() {
         setCurrentUser={setCurrentUser}
         users={users}
         setSelectedTopic={setSelectedTopic}
+        selectedTopic={selectedTopic}
       />
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <TopicsList
-                selectedTopic={selectedTopic}
-              />
               <ArticleList
                 articles={articles}
                 setArticles={setArticles}
