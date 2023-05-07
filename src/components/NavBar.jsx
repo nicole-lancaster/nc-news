@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { fetchTopics } from "../api.js";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { Dialog, Popover, Transition } from "@headlessui/react";
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import UserLogin from "./UserLogin.jsx";
 import {
   ArrowLongRightIcon,
@@ -36,6 +36,10 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
   const handleTopicClick = (topic) => {
     setSelectedTopic(topic.slug);
   };
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
 
   return (
     <header>
@@ -141,6 +145,40 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             >
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
+            <div className="mt-6 flow-root">
+              <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="space-y-2 py-6">
+                  <Disclosure as="div" className="-mx-3">
+                    {({ open }) => (
+                      <>
+                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
+                          Topics
+                          <ChevronDownIcon
+                            className={classNames(
+                              open ? "rotate-180" : "",
+                              "h-5 w-5 flex-none"
+                            )}
+                            aria-hidden="true"
+                          />
+                        </Disclosure.Button>
+                        <Disclosure.Panel className="mt-2 space-y-2">
+                          {[...topics].map((topic) => (
+                            <Disclosure.Button
+                              onClick={() => handleTopicClick(topic)}
+                              key={topic.slug}
+                              as="a"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            >
+                              {topic.slug}
+                            </Disclosure.Button>
+                          ))}
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                </div>
+              </div>
+            </div>
           </div>
         </Dialog.Panel>
       </Dialog>
