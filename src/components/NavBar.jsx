@@ -151,7 +151,13 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                   <Disclosure as="div" className="-mx-3">
                     {({ open }) => (
                       <>
-                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
+                        <Link
+                          className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500"
+                          to="/"
+                        >
+                          Home
+                        </Link>
+                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500">
                           Topics
                           <ChevronDownIcon
                             className={classNames(
@@ -167,7 +173,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                               onClick={() => handleTopicClick(topic)}
                               key={topic.slug}
                               as="a"
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-medium leading-7 text-gray-900  hover:bg-pink-500"
                             >
                               {topic.slug}
                             </Disclosure.Button>
@@ -176,6 +182,34 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                       </>
                     )}
                   </Disclosure>
+                  <Link
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
+                    to="/users"
+                  >
+                    Users
+                  </Link>
+                  <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-pink-500">
+                    <UserLogin currentUser={currentUser} users={users} />
+                    {!currentUser ? (
+                      <>
+                        <Link
+                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
+                          to={`/users`}
+                        >
+                          Login
+                          <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
+                        </Link>
+                      </>
+                    ) : (
+                      <p
+                        className="text-sm font-semibold leading-6 text-gray-900"
+                        onClick={handleLogoutClick}
+                      >
+                        Logout
+                        <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
