@@ -1,7 +1,7 @@
 import { fetchTopics } from "../api.js";
 import { useEffect, useState } from "react";
 
-const TopicList = ({ selectedTopic, setSelectedTopic }) => {
+const TopicList = ({ setSelectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [topics, setTopics] = useState([]);
 
@@ -29,28 +29,12 @@ const TopicList = ({ selectedTopic, setSelectedTopic }) => {
     );
 
   return (
-    <section className="topic-list-flex-container">
-      <h2>Topics</h2>
+    <section>
       <ul>
-        <li
-          onClick={() => handleAllClick()}
-          className={`single-topic ${
-            !selectedTopic ? "single-topic-currently-selected" : ""
-          }`}
-        >
-          all
-        </li>
+        <li onClick={() => handleAllClick()}>all</li>
         {topics.map((topic) => {
           return (
-            <li
-              onClick={() => handleTopicClick(topic)}
-              key={topic.slug}
-              className={`single-topic ${
-                topic.slug === selectedTopic
-                  ? "single-topic-currently-selected"
-                  : ""
-              }`}
-            >
+            <li onClick={() => handleTopicClick(topic)} key={topic.slug}>
               {topic.slug}
             </li>
           );
