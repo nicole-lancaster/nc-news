@@ -62,12 +62,12 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Link
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
               to="/"
             >
               Home
             </Link>
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500">
               Topics
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
@@ -104,7 +104,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             </Transition>
           </Popover>
           <Link
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
             to="/users"
           >
             Users
@@ -114,16 +114,16 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             {!currentUser ? (
               <>
                 <Link
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
                   to={`/users`}
                 >
                   Login
-                  <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
+                  <ArrowLongRightIcon className="h-8 w-8 text-black-500  hover:bg-pink-500" />
                 </Link>
               </>
             ) : (
               <p
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
                 onClick={handleLogoutClick}
               >
                 Logout
@@ -133,6 +133,8 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
           </div>
         </Popover.Group>
       </nav>
+
+      {/* mobile menu */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -191,7 +193,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                   <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-pink-500">
                     <UserLogin currentUser={currentUser} users={users} />
                     {!currentUser ? (
-                      <>
+                      <div className="py-6">
                         <Link
                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
                           to={`/users`}
@@ -199,7 +201,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                           Login
                           <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
                         </Link>
-                      </>
+                      </div>
                     ) : (
                       <p
                         className="text-sm font-semibold leading-6 text-gray-900"
