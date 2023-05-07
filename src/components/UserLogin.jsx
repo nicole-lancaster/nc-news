@@ -1,6 +1,6 @@
 const UserLogin = ({ currentUser }) => {
   if (currentUser === undefined) {
-    return <p>Please login</p>;
+    return;
   }
   return (
     <section>
