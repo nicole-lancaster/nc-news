@@ -1,7 +1,7 @@
 import { fetchTopics } from "../api.js";
 import { useEffect, useState } from "react";
 
-const TopicList = ({ setSelectedTopic }) => {
+const TopicList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [topics, setTopics] = useState([]);
 
@@ -13,14 +13,6 @@ const TopicList = ({ setSelectedTopic }) => {
     });
   }, [setTopics]);
 
-  const handleTopicClick = (topic) => {
-    setSelectedTopic(topic.slug);
-  };
-
-  const handleAllClick = () => {
-    setSelectedTopic("");
-  };
-
   if (isLoading)
     return (
       <div>
@@ -28,20 +20,7 @@ const TopicList = ({ setSelectedTopic }) => {
       </div>
     );
 
-  return (
-    <section>
-      <ul>
-        <li onClick={() => handleAllClick()}>all</li>
-        {topics.map((topic) => {
-          return (
-            <li onClick={() => handleTopicClick(topic)} key={topic.slug}>
-              {topic.slug}
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  );
+  return <></>;
 };
 
 export default TopicList;

@@ -19,6 +19,7 @@ function App() {
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
         users={users}
+        setSelectedTopic={setSelectedTopic}
       />
       <Routes>
         <Route
@@ -27,7 +28,6 @@ function App() {
             <>
               <TopicsList
                 selectedTopic={selectedTopic}
-                setSelectedTopic={setSelectedTopic}
               />
               <ArticleList
                 articles={articles}

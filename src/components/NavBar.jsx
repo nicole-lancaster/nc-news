@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { fetchTopics } from "../api.js";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
@@ -12,13 +14,28 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 
-const NavBar = ({ currentUser, users, setCurrentUser }) => {
+const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    fetchTopics(setTopics).then((topicsList) => {
+      setTopics(topicsList);
+    });
+  }, [setTopics]);
 
   const handleLogoutClick = () => {
     if (currentUser) {
       setCurrentUser(undefined);
     }
+  };
+
+  const handleAllClick = () => {
+    setSelectedTopic("");
+  };
+
+  const handleTopicClick = (topic) => {
+    setSelectedTopic(topic.slug);
   };
 
   return (
@@ -67,41 +84,52 @@ const NavBar = ({ currentUser, users, setCurrentUser }) => {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  <ul></ul>
+                  <ul>
+                    <li onClick={() => handleAllClick()}>all</li>
+                    {topics.map((topic) => {
+                      return (
+                        <li
+                          onClick={() => handleTopicClick(topic)}
+                          key={topic.slug}
+                        >
+                          {topic.slug}
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </Popover.Panel>
             </Transition>
           </Popover>
-            <Link
-              className="text-sm font-semibold leading-6 text-gray-900"
-              to="/users"
-            >
-              {/* <UsersIcon className="h-8 w-8 text-black-500" /> */}
-              Users
-            </Link>
-           
+          <Link
+            className="text-sm font-semibold leading-6 text-gray-900"
+            to="/users"
+          >
+            {/* <UsersIcon className="h-8 w-8 text-black-500" /> */}
+            Users
+          </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        <UserLogin currentUser={currentUser} users={users} />
-            {!currentUser ? (
-              <>
-                <Link
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                  to={`/users`}
-                >
-                  Login
-                  <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
-                </Link>
-              </>
-            ) : (
-              <p
+          <UserLogin currentUser={currentUser} users={users} />
+          {!currentUser ? (
+            <>
+              <Link
                 className="text-sm font-semibold leading-6 text-gray-900"
-                onClick={handleLogoutClick}
+                to={`/users`}
               >
-                Logout
-                <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
-              </p>
-            )}
+                Login
+                <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
+              </Link>
+            </>
+          ) : (
+            <p
+              className="text-sm font-semibold leading-6 text-gray-900"
+              onClick={handleLogoutClick}
+            >
+              Logout
+              <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
+            </p>
+          )}
         </div>
       </nav>
     </header>
