@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
+import { HandThumbUpIcon } from "@heroicons/react/24/outline";
 
 function SingleArticle({ currentUser, setCurrentUser }) {
   const { article_id } = useParams();
@@ -66,6 +67,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           <p className="single-article-votes">{singleArticle.votes} likes</p>
           <button disabled={likeBtnDisabled} onClick={handleVoteClick}>
             Like this article
+            <HandThumbUpIcon  className="h-8 w-8 fill-none hover:fill-cyan-200"/>
           </button>
           {!currentUser && likeBtnDisabled === true ? (
             <p>You need to login first!</p>
