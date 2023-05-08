@@ -42,8 +42,11 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
   }
 
   return (
-    <header>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header className="bg-white">
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
           <NewspaperIcon className="h-8 w-auto" />
           <h1 className="text-3xl font-bold">Nicole's NC-News</h1>
@@ -60,13 +63,14 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         </div>
 
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
+          
             <Link
               className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
               to="/"
             >
               Home
             </Link>
+            <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500">
               Topics
               <ChevronDownIcon
@@ -86,19 +90,15 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
-                  <ul>
-                    <li onClick={() => handleAllClick()}>all</li>
-                    {topics.map((topic) => {
-                      return (
-                        <li
-                          onClick={() => handleTopicClick(topic)}
-                          key={topic.slug}
-                        >
-                          {topic.slug}
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <div onClick={() => handleAllClick()}>all</div>
+                  {topics.map((topic) => (
+                    <div
+                      onClick={() => handleTopicClick(topic)}
+                      key={topic.slug}
+                    >
+                      <div className="flex-auto">{topic.slug}</div>
+                    </div>
+                  ))}
                 </div>
               </Popover.Panel>
             </Transition>
@@ -109,29 +109,29 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
           >
             Users
           </Link>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <UserLogin currentUser={currentUser} users={users} />
-            {!currentUser ? (
-              <>
-                <Link
-                  className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
-                  to={`/users`}
-                >
-                  Login
-                  <ArrowLongRightIcon className="h-8 w-8 text-black-500  hover:bg-pink-500" />
-                </Link>
-              </>
-            ) : (
-              <p
-                className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
-                onClick={handleLogoutClick}
-              >
-                Logout
-                <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
-              </p>
-            )}
-          </div>
         </Popover.Group>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <UserLogin currentUser={currentUser} users={users} />
+          {!currentUser ? (
+            <>
+              <Link
+                className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
+                to={`/users`}
+              >
+                Login
+                <ArrowLongRightIcon className="h-8 w-8 text-black-500  hover:bg-pink-500" />
+              </Link>
+            </>
+          ) : (
+            <p
+              className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
+              onClick={handleLogoutClick}
+            >
+              Logout
+              <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
+            </p>
+          )}
+        </div>
       </nav>
 
       {/* mobile menu */}
