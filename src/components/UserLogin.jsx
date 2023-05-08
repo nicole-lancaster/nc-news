@@ -5,7 +5,7 @@ const UserLogin = ({ currentUser }) => {
   return (
     <section>
       <img
-        className="user-login-avatar"
+        className="user-login-avatar mr-4"
         src={currentUser.avatar_url}
         alt={currentUser.username}
       />
