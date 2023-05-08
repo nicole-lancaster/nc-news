@@ -155,6 +155,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                       <Link
                         className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500"
                         to="/"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         Home
                       </Link>
@@ -171,7 +172,10 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                       <Disclosure.Panel className="mt-2 space-y-2">
                         {[...topics].map((topic) => (
                           <Disclosure.Button
-                            onClick={() => handleTopicClick(topic)}
+                            onClick={() => {
+                              setMobileMenuOpen(false);
+                              handleTopicClick(topic);
+                            }}
                             key={topic.slug}
                             as="a"
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-medium leading-7 text-gray-900  hover:bg-pink-500"
@@ -186,6 +190,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                 <Link
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
                   to="/users"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Users
                 </Link>
@@ -196,6 +201,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                       <Link
                         className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
                         to={`/users`}
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         Login
                         <ArrowLongRightIcon className="h-8 w-8 text-black-500" />
