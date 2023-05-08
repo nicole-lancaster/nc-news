@@ -12,10 +12,12 @@ import {
   ChevronDownIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [topics, setTopics] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTopics(setTopics).then((topicsList) => {
@@ -35,6 +37,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
 
   const handleTopicClick = (topic) => {
     setSelectedTopic(topic.slug);
+    navigate("/");
   };
 
   function classNames(...classes) {
