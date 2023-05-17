@@ -50,10 +50,12 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <Link className="flex lg:flex-1" to="/">
           <NewspaperIcon className="h-8 w-auto mr-2" />
-          <h1 className="text-3xl font-bold">Nicole's NC-News</h1>
-        </div>
+          <h1 className="text-2xl sm:text-3xl font-bold font-mono">
+            Nicole's News
+          </h1>
+        </Link>
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -67,13 +69,13 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
 
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Link
-            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
+            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
             to="/"
           >
             Home
           </Link>
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2">
               Topics
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
@@ -91,14 +93,14 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+                <div className="p-4 font-mono">
                   <div onClick={() => handleAllClick()}>all</div>
                   {topics.map((topic) => (
                     <div
                       onClick={() => handleTopicClick(topic)}
                       key={topic.slug}
                     >
-                      <div className="flex-auto">{topic.slug}</div>
+                      <div className="flex-auto font-mono">{topic.slug}</div>
                     </div>
                   ))}
                 </div>
@@ -106,7 +108,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             </Transition>
           </Popover>
           <Link
-            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
+            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
             to="/users"
           >
             Users
@@ -115,18 +117,16 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <UserLogin currentUser={currentUser} users={users} />
           {!currentUser ? (
-            <>
-              <Link
-                className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
-                to={`/users`}
-              >
-                Login
-                <ArrowLongRightIcon className="h-8 w-8 text-black-500  hover:bg-pink-500" />
-              </Link>
-            </>
+            <Link
+              className="flex flex-row items-center text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
+              to={`/users`}
+            >
+              Login
+              <ArrowLongRightIcon className="h-9 w-9 p-2 text-black-500  hover:bg-pink-500" />
+            </Link>
           ) : (
             <p
-              className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500"
+              className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono"
               onClick={handleLogoutClick}
             >
               Logout
@@ -156,13 +156,13 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                   {({ open }) => (
                     <>
                       <Link
-                        className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500"
+                        className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500 font-mono"
                         to="/"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Home
                       </Link>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500">
+                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-pink-500 font-mono">
                         Topics
                         <ChevronDownIcon
                           className={classNames(
@@ -181,7 +181,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                             }}
                             key={topic.slug}
                             as="a"
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-medium leading-7 text-gray-900  hover:bg-pink-500"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-medium leading-7 text-gray-900  hover:bg-pink-500 font-mono"
                           >
                             {topic.slug}
                           </Disclosure.Button>
@@ -191,18 +191,18 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                   )}
                 </Disclosure>
                 <Link
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500 font-mono"
                   to="/users"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Users
                 </Link>
-                <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-pink-500">
+                <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-pink-500 font-mono">
                   <UserLogin currentUser={currentUser} users={users} />
                   {!currentUser ? (
                     <div className="py-6">
                       <Link
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-pink-500 font-mono"
                         to={`/users`}
                         onClick={() => setMobileMenuOpen(false)}
                       >
@@ -212,11 +212,11 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                     </div>
                   ) : (
                     <p
-                      className="text-sm font-semibold leading-6 text-gray-900"
+                      className="text-sm font-semibold leading-6 text-gray-900 font-mono"
                       onClick={handleLogoutClick}
                     >
                       Logout
-                      <ArrowLongLeftIcon className="h-8 w-8 text-black-500" />
+                      <ArrowLongLeftIcon className="h-8 w-8 text-black-500 font-mono" />
                     </p>
                   )}
                 </div>

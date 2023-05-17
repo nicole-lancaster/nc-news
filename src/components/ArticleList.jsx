@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchArticles } from "../api.js";
 import { Link } from "react-router-dom";
-import { sqlDateFormatter } from "../utils.js";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 
 const ArticleList = ({ articles, setArticles, selectedTopic }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,14 +16,15 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
 
   if (isLoading)
     return (
-      <div>
-        <p>Loading list of articles...</p>
+      <div className="flex flex-col h-screen justify-center items-center animate-pulse">
+        <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
+        <p className="font-mono">Loading list of articles...</p>
       </div>
     );
 
   return (
     <section>
-      <ul className="list-flex-container">
+      <ul className="flex flex-row flex-wrap justify-evenly">
         {articles
           .filter(
             (article) => !selectedTopic || article.topic === selectedTopic
@@ -33,17 +34,16 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
               <Link
                 key={article.article_id}
                 to={`/articles/${article.article_id}`}
+                className="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1"
               >
-                <li className="article-flex-item">
+                <li className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
                   <img
-                    variant="top"
                     src={article.article_img_url}
                     alt={article.title}
+                    className="border rounded-lg"
                   />
-                  <p> {article.title}</p>
-                  <p>
-                    Written by {article.author} on
-                    {sqlDateFormatter(article.created_at)}
+                  <p className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
+                    {article.title}
                   </p>
                 </li>
               </Link>
