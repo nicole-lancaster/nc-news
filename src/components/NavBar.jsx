@@ -53,7 +53,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         <div className="flex lg:flex-1">
           <NewspaperIcon className="h-8 w-auto mr-2" />
           <h1 className="text-2xl sm:text-3xl font-bold font-mono">
-            Nicole's NC-News
+            Nicole's News
           </h1>
         </div>
         <div className="flex lg:hidden">
