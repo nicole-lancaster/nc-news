@@ -34,9 +34,14 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
               <Link
                 key={article.article_id}
                 to={`/articles/${article.article_id}`}
+                className="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1"
               >
                 <li className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
-                  <img src={article.article_img_url} alt={article.title} />
+                  <img
+                    src={article.article_img_url}
+                    alt={article.title}
+                    className="border rounded-lg"
+                  />
                   <p className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
                     {article.title}
                   </p>
