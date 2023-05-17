@@ -62,7 +62,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only font-mono">Open main menu</span>
+            <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
