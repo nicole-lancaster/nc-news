@@ -33,12 +33,11 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                 key={article.article_id}
                 to={`/articles/${article.article_id}`}
               >
-                <li className="self-center m-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
-                  <img
-                    src={article.article_img_url}
-                    alt={article.title}
-                  />
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl" > {article.title}</p>
+                <li className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
+                  <img src={article.article_img_url} alt={article.title} />
+                  <p className="text-sm md:text-base lg:text-lg xl:text-xl">
+                    {article.title}
+                  </p>
                 </li>
               </Link>
             );
