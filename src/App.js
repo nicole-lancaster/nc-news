@@ -13,7 +13,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   return (
-    <div className="App">
+    <div>
       <NavBar
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}

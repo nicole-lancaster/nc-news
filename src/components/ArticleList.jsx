@@ -16,7 +16,7 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
   if (isLoading)
     return (
       <div>
-        <p>Loading list of articles...</p>
+        <p className="font-mono">Loading list of articles...</p>
       </div>
     );
 
@@ -35,7 +35,7 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
               >
                 <li className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
                   <img src={article.article_img_url} alt={article.title} />
-                  <p className="text-sm md:text-base lg:text-lg xl:text-xl">
+                  <p className="text-center text-sm md:text-base lg:text-lg xl:text-xl font-mono">
                     {article.title}
                   </p>
                 </li>
