@@ -20,17 +20,6 @@
   box-shadow: 5px 5px 2px;
 }
 
-.list-flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.article-flex-item {
-  list-style-type: none;
-  align-self: center;
-}
-
 .SingleArticle {
   display: flex;
   flex-wrap: wrap;

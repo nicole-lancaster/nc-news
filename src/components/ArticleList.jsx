@@ -23,7 +23,7 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
 
   return (
     <section>
-      <ul className="list-flex-container">
+      <ul>
         {articles
           .filter(
             (article) => !selectedTopic || article.topic === selectedTopic
@@ -34,9 +34,9 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                 key={article.article_id}
                 to={`/articles/${article.article_id}`}
               >
-                <li className="article-flex-item">
+                <li>
                   <img
-                    variant="top"
+                    className="w-32 md:w-48 lg:w-60"
                     src={article.article_img_url}
                     alt={article.title}
                   />
