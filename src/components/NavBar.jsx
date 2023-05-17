@@ -50,12 +50,12 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <Link className="flex lg:flex-1" to="/">
           <NewspaperIcon className="h-8 w-auto mr-2" />
           <h1 className="text-2xl sm:text-3xl font-bold font-mono">
             Nicole's News
           </h1>
-        </div>
+        </Link>
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -69,13 +69,13 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
 
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Link
-            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono"
+            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
             to="/"
           >
             Home
           </Link>
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2">
               Topics
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
@@ -108,7 +108,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
             </Transition>
           </Popover>
           <Link
-            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono"
+            className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
             to="/users"
           >
             Users
@@ -117,15 +117,13 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <UserLogin currentUser={currentUser} users={users} />
           {!currentUser ? (
-            <>
-              <Link
-                className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono"
-                to={`/users`}
-              >
-                Login
-                <ArrowLongRightIcon className="h-8 w-8 text-black-500  hover:bg-pink-500" />
-              </Link>
-            </>
+            <Link
+              className="flex flex-row items-center text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
+              to={`/users`}
+            >
+              Login
+              <ArrowLongRightIcon className="h-9 w-9 p-2 text-black-500  hover:bg-pink-500" />
+            </Link>
           ) : (
             <p
               className="text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono"
