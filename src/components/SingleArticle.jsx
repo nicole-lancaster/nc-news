@@ -51,7 +51,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
 
   return (
     <div>
-      <article className="flex flex-col w-auto">
+      <article className="flex flex-col m-5 w-auto">
         <img
           src={singleArticle.article_img_url}
           alt={singleArticle.title}
@@ -69,9 +69,14 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           {singleArticle.body}
         </p>
         <div className="flex flex-row flex-wrap">
-          <p className="font-mono text-xs">{singleArticle.votes} likes</p>
+          <p className="font-mono text-xs justify-start">
+            {comments.length} comments
+          </p>
+          <p className="font-mono text-xs justify-end">
+            {singleArticle.votes} likes
+          </p>
           <button
-            className="flex flex-row items-center font-mono text-xs m-5 p-1 bg-pink-500 shadow rounded-lg"
+            className="justify-end font-mono text-xs m-5 p-1 bg-pink-500 shadow rounded-lg"
             disabled={likeBtnDisabled}
             onClick={handleVoteClick}
           >
@@ -82,7 +87,6 @@ function SingleArticle({ currentUser, setCurrentUser }) {
         {!currentUser && likeBtnDisabled === true ? (
           <p className="font-mono text-base"> You need to login first!</p>
         ) : null}{" "}
-        <p className="font-mono text-xs">{comments.length} comments</p>
       </article>
       <Comments
         comments={comments}

@@ -67,7 +67,7 @@ const Comments = ({
       <h3 className="font-mono m-5 font-bold">Comments</h3>
       <form
         onSubmit={handleCommentSubmit}
-        className="flex flex-col p-5 self-center m-5 border-2 border-pink-500 shadow rounded-lg"
+        className="flex flex-col p-5 m-5 border-2 border-pink-500 shadow rounded-lg"
       >
         <label className="font-mono" htmlFor="comment-input-box"></label>
         <textarea
