@@ -51,11 +51,11 @@ function SingleArticle({ currentUser, setCurrentUser }) {
 
   return (
     <div>
-      <article className="flex flex-col max-w-full m-5">
+      <article className="flex flex-col w-auto">
         <img
           src={singleArticle.article_img_url}
           alt={singleArticle.title}
-          className="max-w-full self-center rounded-lg"
+          className="self-center rounded-lg p-2 w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2"
         />
         <h2 className="font-mono text-lg font-extrabold  mt-2">
           {singleArticle.title}
@@ -65,7 +65,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           {sqlDateFormatter(singleArticle.created_at)}
         </p>
         <p className="font-mono text-sm">#{singleArticle.topic}</p>
-        <p className="font-mono text-base max-w-fit self-center">
+        <p className="font-mono text-base self-center text-justify">
           {singleArticle.body}
         </p>
         <div className="flex flex-row flex-wrap">

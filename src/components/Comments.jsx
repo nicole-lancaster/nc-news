@@ -61,12 +61,14 @@ const Comments = ({
         <p>Loading comments...</p>
       </div>
     );
-  if (isCommentLoading) return <p>Posting comment...</p>;
 
   return (
     <section>
       <h3 className="font-mono m-5 font-bold">Comments</h3>
-      <form onSubmit={handleCommentSubmit} className="flex flex-col p-5 self-center m-5 border-2 border-pink-500 shadow rounded-lg">
+      <form
+        onSubmit={handleCommentSubmit}
+        className="flex flex-col p-5 self-center m-5 border-2 border-pink-500 shadow rounded-lg"
+      >
         <label className="font-mono" htmlFor="comment-input-box"></label>
         <textarea
           required
@@ -78,22 +80,31 @@ const Comments = ({
             setCommentBody(event.target.value);
           }}
         />
-        <button className="font-mono" type="submit">Post</button>
-        {isLoading && currentUser ? <p className="font-mono">Posting comment...</p> : null}
-        {hasPosted && currentUser ? <p className="font-mono">Comment added!</p> : null}{" "}
-        {isPostingError && !currentUser ? (
-          <p className="font-mono">
-            Sorry, we are unable to post your comment. Check you are logged in
-            then try again!
-          </p>
-        ) : null}
+        <button className="font-mono" type="submit">
+          Post
+        </button>
       </form>
-      <ul className="font-mono flex flex-col max-w-full">
+      {isCommentLoading && currentUser ? (
+        <p className="font-mono">Posting comment...</p>
+      ) : null}
+      {hasPosted && currentUser ? (
+        <p className="font-mono">Comment added!</p>
+      ) : null}{" "}
+      {isPostingError && !currentUser ? (
+        <p className="font-mono">
+          Sorry, we are unable to post your comment. Check you are logged in
+          then try again!
+        </p>
+      ) : null}
+      <ul className="font-mono flex flex-col">
         {comments.length === 0
           ? "No comments - be the first to post one!"
           : comments.map((comment) => {
               return (
-                <li key={comment.comment_id} className="flex flex-col p-5 self-center m-5 border-2 border-black shadow rounded-lg ">
+                <li
+                  key={comment.comment_id}
+                  className="flex flex-col p-5 self-center m-5 border-2 border-black shadow rounded-lg "
+                >
                   <p className="font-mono italic">
                     by {comment.author} at{" "}
                     {sqlDateFormatter(comment.created_at)}
