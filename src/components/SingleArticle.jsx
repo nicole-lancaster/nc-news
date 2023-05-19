@@ -68,22 +68,19 @@ function SingleArticle({ currentUser, setCurrentUser }) {
         <p className="font-mono text-base self-center text-justify">
           {singleArticle.body}
         </p>
-        <div className="flex flex-row flex-wrap">
-          <p className="font-mono text-xs justify-start">
-            {comments.length} comments
-          </p>
-          <p className="font-mono text-xs justify-end">
-            {singleArticle.votes} likes
-          </p>
-          <button
-            className="justify-end font-mono text-xs m-5 p-1 bg-pink-500 shadow rounded-lg"
-            disabled={likeBtnDisabled}
-            onClick={handleVoteClick}
-          >
-            <p>Like</p>
-            <HandThumbUpIcon className="h-8 w-8 pl-1 fill-none hover:fill-pink-500" />
-          </button>{" "}
-        </div>
+        <div className="flex flex-row justify-between py-2 font-bold">
+          <p className="font-mono text-xs">{comments.length} comments</p>
+
+          <p className="font-mono text-xs">{singleArticle.votes} likes</p>
+        </div>{" "}
+        <button
+          className="flex flex-row font-mono font-bold text-xs m-2 p-1 w-1/6 bg-pink-500 shadow rounded-lg self-center"
+          disabled={likeBtnDisabled}
+          onClick={handleVoteClick}
+        >
+          <p className="self-center">Like</p>
+          <HandThumbUpIcon className="h-8 w-8 pl-1 fill-none hover:fill-pink-500 self-center" />
+        </button>
         {!currentUser && likeBtnDisabled === true ? (
           <p className="font-mono text-base"> You need to login first!</p>
         ) : null}{" "}
