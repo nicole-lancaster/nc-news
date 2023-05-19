@@ -65,9 +65,9 @@ const Comments = ({
 
   return (
     <section>
-      <h3 className="font-mono">Comments</h3>
-      <form onSubmit={handleCommentSubmit}>
-        <label className="font-mono" htmlFor="comment-input-box">Post your comment!</label>
+      <h3 className="font-mono m-5 font-bold">Comments</h3>
+      <form onSubmit={handleCommentSubmit} className="flex flex-col p-5 self-center m-5 border-2 border-pink-500 shadow rounded-lg">
+        <label className="font-mono" htmlFor="comment-input-box"></label>
         <textarea
           required
           type="text"
