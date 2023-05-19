@@ -42,37 +42,44 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   if (isLoading)
     return (
       <div>
-        <p>Loading article...</p>
+        <p className="font-mono">Loading article...</p>
       </div>
     );
 
-  if (isError) return <p>Unable to like article at this time 🙁 </p>;
+  if (isError)
+    return <p className="font-mono">Unable to like article at this time 🙁 </p>;
 
   return (
     <div>
-      <article className="SingleArticle">
-        <h2 className="single-article-title">{singleArticle.title}</h2>
+      <article className="flex flex-col max-w-full">
+        <h2 className="font-mono font-extrabold self-center">
+          {singleArticle.title}
+        </h2>
         <img
           src={singleArticle.article_img_url}
           alt={singleArticle.title}
-          className="single-article-img"
+          className="max-w-full self-center rounded-lg"
         />
-        <p className="single-article-author-date">
+        <p className="font-mono self-center italic">
           Written by {singleArticle.author} on{" "}
           {sqlDateFormatter(singleArticle.created_at)}
         </p>
-        <p className="single-article-topic">#{singleArticle.topic}</p>
-        <p className="single-article-body">{singleArticle.body}</p>
-        <div className="single-article-likes-and-comments">
-          <p className="single-article-votes">{singleArticle.votes} likes</p>
-          <button disabled={likeBtnDisabled} onClick={handleVoteClick}>
+        <p className="font-mono">#{singleArticle.topic}</p>
+        <p className="font-mono max-w-fit self-center">{singleArticle.body}</p>
+        <div className="">
+          <p className="font-mono">{singleArticle.votes} likes</p>
+          <button
+            className="font-mono"
+            disabled={likeBtnDisabled}
+            onClick={handleVoteClick}
+          >
             Like this article
-            <HandThumbUpIcon  className="h-8 w-8 fill-none hover:fill-cyan-200"/>
+            <HandThumbUpIcon className="h-8 w-8 fill-none hover:fill-cyan-200" />
           </button>
           {!currentUser && likeBtnDisabled === true ? (
-            <p>You need to login first!</p>
+            <p className="font-mono"> You need to login first!</p>
           ) : null}
-          <p className="single-article-comments">{comments.length} comments</p>
+          <p className="font-mono">{comments.length} comments</p>
         </div>
       </article>
       <Comments

@@ -65,40 +65,41 @@ const Comments = ({
 
   return (
     <section>
-      <h3>Comments</h3>
+      <h3 className="font-mono">Comments</h3>
       <form onSubmit={handleCommentSubmit}>
-        <label htmlFor="comment-input-box">Post your comment!</label>
+        <label className="font-mono" htmlFor="comment-input-box">Post your comment!</label>
         <textarea
           required
           type="text"
           value={commentBody}
           placeholder="Write your comment here..."
+          className="font-mono"
           onChange={(event) => {
             setCommentBody(event.target.value);
           }}
         />
-        <button type="submit">Post</button>
-        {isLoading && currentUser ? <p>Posting comment...</p> : null}
-        {hasPosted && currentUser ? <p>Comment added!</p> : null}{" "}
+        <button className="font-mono" type="submit">Post</button>
+        {isLoading && currentUser ? <p className="font-mono">Posting comment...</p> : null}
+        {hasPosted && currentUser ? <p className="font-mono">Comment added!</p> : null}{" "}
         {isPostingError && !currentUser ? (
-          <p>
+          <p className="font-mono">
             Sorry, we are unable to post your comment. Check you are logged in
             then try again!
           </p>
         ) : null}
       </form>
-      <ul className="comments-flex-container">
+      <ul className="font-mono flex flex-col max-w-full">
         {comments.length === 0
           ? "No comments - be the first to post one!"
           : comments.map((comment) => {
               return (
-                <li key={comment.comment_id} className="comment-flex-item">
-                  <p>{comment.body}</p>
-                  <p className="comment-author-date">
-                    posted by {comment.author} at{" "}
+                <li key={comment.comment_id} className="flex flex-col p-5 self-center m-5 border-2 border-black shadow rounded-lg ">
+                  <p className="font-mono italic">
+                    by {comment.author} at{" "}
                     {sqlDateFormatter(comment.created_at)}
                   </p>
-                  <p>{comment.votes} likes</p>
+                  <p className="font-mono font-bold">{comment.body}</p>
+                  <p className="font-mono">{comment.votes} likes</p>
                 </li>
               );
             })}
