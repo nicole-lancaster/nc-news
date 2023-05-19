@@ -50,43 +50,45 @@ function SingleArticle({ currentUser, setCurrentUser }) {
     return <p className="font-mono">Unable to like article at this time 🙁 </p>;
 
   return (
-    <div>
-      <article className="flex flex-col m-5 p-5 w-auto border shadow rounded-lg">
-        <img
-          src={singleArticle.article_img_url}
-          alt={singleArticle.title}
-          className="self-center border rounded-lg w-full md:w-3/4 lg:w-2/3 xl:w-1/2"
-        />
-        <h2 className="font-mono text-lg font-extrabold my-2">
-          {singleArticle.title}
-        </h2>
-        <p className="font-mono text-xs italic mb-2">
-          Written by {singleArticle.author} on{" "}
-          {sqlDateFormatter(singleArticle.created_at)}
-        </p>
-        <div className="flex flex-row  items-center font-mono font-bold text-xs py-1 w-1/3">
-          <TagIcon className="w-5 h-5 fill-pink-500" />
-          <p className="font-mono text-xs pl-1">{singleArticle.topic}</p>
-        </div>
-        <p className="font-mono text-sm self-center text-justify my-2">
-          {singleArticle.body}
-        </p>
-        <div className="flex flex-row justify-between py-2 font-bold">
-          <p className="font-mono text-xs">{comments.length} comments</p>
+    <div className="flex flex-col items-center">
+      <article className="flex flex-col items-center m-5 p-5 w-auto border shadow rounded-lg md:w-3/4 xl:3/4">
+        <div className="w-auto flex flex-col justify-center xl:w-3/4">
+          <img
+            src={singleArticle.article_img_url}
+            alt={singleArticle.title}
+            className="self-center border rounded-lg w-full"
+          />
+          <h2 className="font-mono text-lg font-extrabold my-2 w-full">
+            {singleArticle.title}
+          </h2>
+          <p className="font-mono text-xs italic mb-2 xl:w-3/4">
+            Written by {singleArticle.author} on{" "}
+            {sqlDateFormatter(singleArticle.created_at)}
+          </p>
+          <div className="flex flex-row  items-center font-mono font-bold text-xs py-1 w-1/3">
+            <TagIcon className="w-5 h-5 fill-pink-500" />
+            <p className="font-mono text-xs pl-1">{singleArticle.topic}</p>
+          </div>
+          <p className="font-mono text-sm self-center text-justify my-2">
+            {singleArticle.body}
+          </p>
+          <div className="flex flex-row justify-between py-2 font-bold">
+            <p className="font-mono text-xs">{comments.length} comments</p>
 
-          <p className="font-mono text-xs">{singleArticle.votes} likes</p>
-        </div>{" "}
-        <button
-          className="flex flex-row items-center font-mono font-bold text-xs my-2 p-1 w-1/4 bg-pink-500 shadow rounded-lg justify-center self-center"
-          disabled={likeBtnDisabled}
-          onClick={handleVoteClick}
-        >
-          <p className="items-center">Like</p>
-          <HandThumbUpIcon className="h-5 w-5 pl-1 fill-none hover:fill-pink-500" />
-        </button>
-        {!currentUser && likeBtnDisabled === true ? (
-          <p className="font-mono text-base"> You need to login first!</p>
-        ) : null}{" "}
+            <p className="font-mono text-xs">{singleArticle.votes} likes</p>
+          </div>{" "}
+          <button
+            className="flex flex-row items-center font-mono font-bold text-xs my-2 p-1 w-1/4 bg-pink-500 shadow rounded-lg justify-center self-center"
+            disabled={likeBtnDisabled}
+            onClick={handleVoteClick}
+          >
+            <p className="items-center">Like</p>
+            <HandThumbUpIcon className="h-5 w-5 pl-1 fill-none hover:fill-pink-500" />
+          </button>
+          {!currentUser && likeBtnDisabled === true ? (
+            <p className="font-mono text-base"> You need to login first!</p>
+          ) : null}{" "}
+        </div>
       </article>
       <Comments
         comments={comments}
