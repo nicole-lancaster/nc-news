@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
-import { HandThumbUpIcon } from "@heroicons/react/24/outline";
+import { HandThumbUpIcon, TagIcon } from "@heroicons/react/24/outline";
 
 function SingleArticle({ currentUser, setCurrentUser }) {
   const { article_id } = useParams();
@@ -42,37 +42,52 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   if (isLoading)
     return (
       <div>
-        <p>Loading article...</p>
+        <p className="font-mono">Loading article...</p>
       </div>
     );
 
-  if (isError) return <p>Unable to like article at this time 🙁 </p>;
+  if (isError)
+    return <p className="font-mono">Unable to like article at this time 🙁 </p>;
 
   return (
-    <div>
-      <article className="SingleArticle">
-        <h2 className="single-article-title">{singleArticle.title}</h2>
-        <img
-          src={singleArticle.article_img_url}
-          alt={singleArticle.title}
-          className="single-article-img"
-        />
-        <p className="single-article-author-date">
-          Written by {singleArticle.author} on{" "}
-          {sqlDateFormatter(singleArticle.created_at)}
-        </p>
-        <p className="single-article-topic">#{singleArticle.topic}</p>
-        <p className="single-article-body">{singleArticle.body}</p>
-        <div className="single-article-likes-and-comments">
-          <p className="single-article-votes">{singleArticle.votes} likes</p>
-          <button disabled={likeBtnDisabled} onClick={handleVoteClick}>
-            Like this article
-            <HandThumbUpIcon  className="h-8 w-8 fill-none hover:fill-cyan-200"/>
+    <div className="flex flex-col items-center">
+      <article className="flex flex-col items-center m-5 p-5 w-auto border shadow rounded-lg md:w-3/4 xl:w-1/2">
+        <div className="w-auto flex flex-col justify-center">
+          <img
+            src={singleArticle.article_img_url}
+            alt={singleArticle.title}
+            className="self-center border rounded-lg w-full"
+          />
+          <h2 className="font-mono text-lg md:text-xl 2xl:text-3xl font-extrabold my-2 w-full">
+            {singleArticle.title}
+          </h2>
+          <p className="font-mono text-xs md:text-sm 2xl:text-xl italic mb-2">
+            Written by {singleArticle.author} on{" "}
+            {sqlDateFormatter(singleArticle.created_at)}
+          </p>
+          <div className="flex flex-row  items-center font-mono font-bold text-xs py-1 w-1/3">
+            <TagIcon className="w-5 h-5 fill-pink-500" />
+            <p className="font-mono text-xs 2xl:text-lg pl-1">{singleArticle.topic}</p>
+          </div>
+          <p className="font-mono text-sm lg:text-lg 2xl:text-2xl text-justify my-2">
+            {singleArticle.body}
+          </p>
+          <div className="flex flex-row justify-between py-2 font-bold">
+            <p className="font-mono text-xs 2xl:text-lg">{comments.length} comments</p>
+
+            <p className="font-mono text-xs 2xl:text-lg">{singleArticle.votes} likes</p>
+          </div>{" "}
+          <button
+            className="flex flex-row items-center font-mono font-bold text-xs 2xl:text-lg my-2 p-1 w-1/4 bg-pink-500 shadow rounded-lg justify-center self-center"
+            disabled={likeBtnDisabled}
+            onClick={handleVoteClick}
+          >
+            <p className="items-center">Like</p>
+            <HandThumbUpIcon className="h-5 w-5 pl-1 fill-none hover:fill-pink-500" />
           </button>
           {!currentUser && likeBtnDisabled === true ? (
-            <p>You need to login first!</p>
-          ) : null}
-          <p className="single-article-comments">{comments.length} comments</p>
+            <p className="font-mono text-base"> You need to login first!</p>
+          ) : null}{" "}
         </div>
       </article>
       <Comments
