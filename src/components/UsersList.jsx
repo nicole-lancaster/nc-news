@@ -21,7 +21,7 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
     );
 
   return (
-    <main>
+    <section>
       <ul className="user-list-flex-container">
         {users.map((user) => {
           return (
@@ -34,7 +34,7 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
           );
         })}
       </ul>
-    </main>
+    </section>
   );
 };
 

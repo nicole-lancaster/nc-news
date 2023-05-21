@@ -52,7 +52,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
   return (
     <div className="flex flex-col items-center">
       <article className="flex flex-col items-center m-5 p-5 w-auto border shadow rounded-lg md:w-3/4 xl:w-1/2">
-        <div className="w-auto flex flex-col justify-center">
+        <section className="w-auto flex flex-col justify-center">
           <img
             src={singleArticle.article_img_url}
             alt={singleArticle.title}
@@ -74,7 +74,6 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           </p>
           <div className="flex flex-row justify-between py-2 font-bold">
             <p className="font-mono text-xs 2xl:text-lg">{comments.length} comments</p>
-
             <p className="font-mono text-xs 2xl:text-lg">{singleArticle.votes} likes</p>
           </div>{" "}
           <button
@@ -88,7 +87,7 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           {!currentUser && likeBtnDisabled === true ? (
             <p className="font-mono text-base"> You need to login first!</p>
           ) : null}{" "}
-        </div>
+        </section>
       </article>
       <Comments
         comments={comments}
