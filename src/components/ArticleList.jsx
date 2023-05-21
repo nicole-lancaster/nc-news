@@ -42,9 +42,9 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                     alt={article.title}
                     className="border rounded-lg"
                   />
-                  <p className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
+                  <h2 className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
                     {article.title}
-                  </p>
+                  </h2>
                 </li>
               </Link>
             );

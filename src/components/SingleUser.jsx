@@ -12,7 +12,7 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
   if (isLoading) return <p>Logging in...</p>;
 
   return (
-    <div className="single-user ">
+    <section className="single-user ">
       <button
         className="user-pretend-to-be-btn border border-white bg-none hover:border-black"
         onClick={() => handleLoginClick(user)}
@@ -33,7 +33,7 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
           You are now logged in as {user.name}!
         </p>
       ) : null}
-    </div>
+    </section>
   );
 };
 export default SingleUser;
