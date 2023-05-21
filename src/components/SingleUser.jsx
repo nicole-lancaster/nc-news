@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoggedInModal from "./LoggedInModal";
 
 const SingleUser = ({ user, currentUser, setCurrentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,27 +13,27 @@ const SingleUser = ({ user, currentUser, setCurrentUser }) => {
   if (isLoading) return <p>Logging in...</p>;
 
   return (
-    <section className="single-user ">
-      <button
-        className="user-pretend-to-be-btn border border-white bg-none hover:border-black"
-        onClick={() => handleLoginClick(user)}
-        disabled={user.username === currentUser?.username}
-      >
-        <li className="single-user-name">
-          {user.name}
-          <p className="single-user-username">{user.username}</p>
-          <img
-            className="user-list-avatar"
-            src={user.avatar_url}
-            alt={user.username}
-          />
-        </li>
-      </button>
-      {currentUser === user ? (
-        <p className="user-logged-in-as-msg">
-          You are now logged in as {user.name}!
-        </p>
-      ) : null}
+    <section>
+      <div className="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
+        <button
+          className=""
+          onClick={() => handleLoginClick(user)}
+          disabled={user.username === currentUser?.username}
+        >
+          <li className="content-around mx-1 my-2 ">
+            {user.name}
+            <p className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
+              {user.username}
+            </p>
+            <img
+              className="p-1 w-20 h-20"
+              src={user.avatar_url}
+              alt={user.username}
+            />
+          </li>
+        </button>
+      </div>
+      {currentUser === user ? <LoggedInModal user={user} /> : null}
     </section>
   );
 };

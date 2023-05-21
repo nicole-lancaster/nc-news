@@ -11,46 +11,6 @@
   box-shadow: 5px 5px 2px;
 }
 
-.single-article-img {
-  align-self: center;
-  max-width: 900px;
-}
-
-.user-list-flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.single-user {
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  padding: 20px;
-  width: 150px;
-  max-height: 450px;
-  justify-content: space-evenly;
-}
-
-.user-list-avatar {
-  width: 120px;
-  height: 120px;
-  padding: 10px;
-  justify-content: center;
-}
-
-.single-user-username,
-.single-user-name,
-.user-logged-in-as-msg {
-  max-width: 120px;
-  font-size: 10px;
-  align-items: center;
-}
-
-.user-pretend-to-be-btn {
-  width: 120px;
-}
 .topic-list-flex-container {
   display: flex;
   flex-direction: column;
