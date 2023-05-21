@@ -24,7 +24,7 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
 
   return (
     <section>
-      <ul className="flex flex-row flex-wrap justify-evenly">
+      <article className="flex flex-row flex-wrap justify-evenly">
         {articles
           .filter(
             (article) => !selectedTopic || article.topic === selectedTopic
@@ -36,7 +36,7 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                 to={`/articles/${article.article_id}`}
                 className="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1"
               >
-                <li className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
+                <section className="content-around mx-1 my-2 w-32 md:w-48 lg:w-60 xl:w-100 2xl:w-110">
                   <img
                     src={article.article_img_url}
                     alt={article.title}
@@ -45,11 +45,11 @@ const ArticleList = ({ articles, setArticles, selectedTopic }) => {
                   <h2 className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
                     {article.title}
                   </h2>
-                </li>
+                </section>
               </Link>
             );
           })}
-      </ul>
+      </article>
     </section>
   );
 };
