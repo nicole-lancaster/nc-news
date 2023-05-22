@@ -22,7 +22,7 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
 
   return (
     <section>
-      <ul className="user-list-flex-container">
+      <ul className="flex flex-row flex-wrap justify-evenly">
         {users.map((user) => {
           return (
             <SingleUser
