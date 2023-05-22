@@ -36,7 +36,7 @@ const LoggedInModal = ({ user }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden border-4 w-11/12 border-pink-500 rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 md:w-1/2 lg:1/4 xl:1/10">
+              <Dialog.Panel className="relative transform overflow-hidden border-4 w-11/12 border-pink-500 rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 md:w-2/3 lg:w-1/2 xl:w-1/3 2xl:1/4">
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
