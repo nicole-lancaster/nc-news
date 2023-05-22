@@ -36,7 +36,7 @@ const LoggedInModal = ({ user }) => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <Dialog.Panel className="relative transform overflow-hidden border-4 w-11/12 border-pink-500 rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 md:w-1/2 lg:1/4 xl:1/10">
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
@@ -62,7 +62,7 @@ const LoggedInModal = ({ user }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row p-1">
+                <div className="flex flex-row p-1 justify-end">
                   <button
                     type="button"
                     className="m-2 p-1 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-pink-500 sm:mt-0 sm:w-auto"
