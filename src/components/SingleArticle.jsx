@@ -4,6 +4,7 @@ import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
 import { HandThumbUpIcon, TagIcon } from "@heroicons/react/24/outline";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 
 function SingleArticle({ currentUser, setCurrentUser }) {
   const { article_id } = useParams();
@@ -41,7 +42,8 @@ function SingleArticle({ currentUser, setCurrentUser }) {
 
   if (isLoading)
     return (
-      <div>
+      <div className="flex flex-col h-screen justify-center items-center animate-pulse">
+        <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
         <p className="font-mono">Loading article...</p>
       </div>
     );
@@ -67,14 +69,20 @@ function SingleArticle({ currentUser, setCurrentUser }) {
           </p>
           <div className="flex flex-row  items-center font-mono font-bold text-xs py-1 w-1/3">
             <TagIcon className="w-5 h-5 fill-pink-500" />
-            <p className="font-mono text-xs 2xl:text-lg pl-1">{singleArticle.topic}</p>
+            <p className="font-mono text-xs 2xl:text-lg pl-1">
+              {singleArticle.topic}
+            </p>
           </div>
           <p className="font-mono text-sm lg:text-lg 2xl:text-2xl text-justify my-2">
             {singleArticle.body}
           </p>
           <div className="flex flex-row justify-between py-2 font-bold">
-            <p className="font-mono text-xs 2xl:text-lg">{comments.length} comments</p>
-            <p className="font-mono text-xs 2xl:text-lg">{singleArticle.votes} likes</p>
+            <p className="font-mono text-xs 2xl:text-lg">
+              {comments.length} comments
+            </p>
+            <p className="font-mono text-xs 2xl:text-lg">
+              {singleArticle.votes} likes
+            </p>
           </div>{" "}
           <button
             className="flex flex-row items-center font-mono font-bold text-xs 2xl:text-lg my-2 p-1 w-1/4 bg-pink-500 shadow rounded-lg justify-center self-center"

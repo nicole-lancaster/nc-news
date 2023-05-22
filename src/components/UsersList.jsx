@@ -1,6 +1,7 @@
 import SingleUser from "./SingleUser.jsx";
 import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 
 const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,9 +16,10 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
 
   if (isLoading)
     return (
-      <div>
-        <p>Loading all users...</p>
-      </div>
+      <div className="flex flex-col h-screen justify-center items-center animate-pulse">
+      <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
+      <p className="font-mono">Loading users...</p>
+    </div>
     );
 
   return (
