@@ -2,6 +2,7 @@ import { fetchCommentsByArticleID } from "../api";
 import { useEffect, useState } from "react";
 import { sqlDateFormatter } from "../utils.js";
 import { postComment } from "../api.js";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 
 const Comments = ({
   article_id,
@@ -57,8 +58,9 @@ const Comments = ({
 
   if (isLoading)
     return (
-      <div>
-        <p>Loading comments...</p>
+      <div className="flex flex-col justify-center items-center animate-pulse">
+        <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
+        <p className="font-mono">Loading comments...</p>
       </div>
     );
 
