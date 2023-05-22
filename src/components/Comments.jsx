@@ -66,7 +66,9 @@ const Comments = ({
 
   return (
     <section className="flex flex-col items-center m-5 p-5 w-auto md:w-3/4 xl:w-1/2">
-      <h3 className="font-mono text-base 2xl:text-xl m-5 font-bold">Comments</h3>
+      <h3 className="font-mono text-base 2xl:text-xl m-5 font-bold">
+        Comments
+      </h3>
       <form
         onSubmit={handleCommentSubmit}
         className="flex flex-col p-5 m-5 border-2 border-pink-500 shadow rounded-lg w-auto md:w-3/4 xl:w-1/2 "
@@ -77,12 +79,15 @@ const Comments = ({
           type="text"
           value={commentBody}
           placeholder="Write your comment here..."
-          className="font-mono"
+          className="font-mono p-1"
           onChange={(event) => {
             setCommentBody(event.target.value);
           }}
         />
-        <button className="font-mono" type="submit">
+        <button
+          className="font-mono font-bold p-1 bg-pink-500 shadow rounded-lg mt-2"
+          type="submit"
+        >
           Post
         </button>
       </form>
@@ -111,8 +116,12 @@ const Comments = ({
                     by {comment.author} at{" "}
                     {sqlDateFormatter(comment.created_at)}
                   </p>
-                  <p className="font-mono text-sm 2xl:text-lg my-3">{comment.body}</p>
-                  <p className="font-mono font-bold text-xs 2xl:text-lg flex flex-row justify-end mr-1">{comment.votes} likes</p>
+                  <p className="font-mono text-sm 2xl:text-lg my-3">
+                    {comment.body}
+                  </p>
+                  <p className="font-mono font-bold text-xs 2xl:text-lg flex flex-row justify-end mr-1">
+                    {comment.votes} likes
+                  </p>
                 </li>
               );
             })}
