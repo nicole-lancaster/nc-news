@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer"
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -55,6 +56,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer/>
       </>
   );
 }
