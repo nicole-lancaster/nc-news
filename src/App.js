@@ -14,7 +14,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   return (
-    <>
+      <div className="">
       <NavBar
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
@@ -57,7 +57,7 @@ function App() {
         />
       </Routes>
       <Footer/>
-      </>
+      </div>
   );
 }
 
