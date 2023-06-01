@@ -115,7 +115,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <UserLogin currentUser={currentUser} users={users} />
+          <UserLogin currentUser={currentUser} />
           {!currentUser ? (
             <Link
               className="flex flex-row items-center text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"
@@ -198,7 +198,7 @@ const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
                   Users
                 </Link>
                 <div className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-pink-500 font-mono">
-                  <UserLogin currentUser={currentUser} users={users} />
+                  <UserLogin currentUser={currentUser} />
                   {!currentUser ? (
                     <div className="py-6">
                       <Link
