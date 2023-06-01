@@ -16,26 +16,28 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
 
   if (isLoading)
     return (
-      <div className="flex flex-col h-screen justify-center items-center animate-pulse">
-      <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
-      <p className="font-mono">Loading users...</p>
-    </div>
+      <div className="flex flex-col justify-center items-center animate-pulse">
+        <NewspaperIcon className="h-8 w-auto mr-2 animate-pulse" />
+        <p className="font-mono">Loading users...</p>
+      </div>
     );
 
   return (
-    <section>
-      <ul className="flex flex-row flex-wrap justify-evenly">
-        {users.map((user) => {
-          return (
-            <SingleUser
-              key={user.username}
-              user={user}
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          );
-        })}
-      </ul>
+    <section className="flex flex-col">
+      <div className="flex-grow">
+        <ul className="flex flex-row flex-wrap justify-center items-center">
+          {users.map((user) => {
+            return (
+              <SingleUser
+                key={user.username}
+                user={user}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            );
+          })}
+        </ul>
+      </div>
     </section>
   );
 };

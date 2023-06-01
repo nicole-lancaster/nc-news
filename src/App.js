@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import UsersList from "./components/UsersList";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -13,7 +14,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
 
   return (
-    <>
+    <div className="flex flex-col items-center h-screen">
       <NavBar
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
@@ -21,41 +22,45 @@ function App() {
         setSelectedTopic={setSelectedTopic}
         selectedTopic={selectedTopic}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <ArticleList
-                articles={articles}
-                setArticles={setArticles}
-                selectedTopic={selectedTopic}
+      <main className="flex flex-grow">
+        <Routes className="">
+          <Route
+            path="/"
+            element={
+              <>
+                <ArticleList
+                  articles={articles}
+                  setArticles={setArticles}
+                  selectedTopic={selectedTopic}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/articles/:article_id"
+            element={
+              <SingleArticle
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
               />
-            </>
-          }
-        />
-        <Route
-          path="/articles/:article_id"
-          element={
-            <SingleArticle
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <UsersList
-              users={users}
-              setUsers={setUsers}
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          }
-        />
-      </Routes>
-      </>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <UsersList
+                className="flex flex-col flex-grow"
+                users={users}
+                setUsers={setUsers}
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
