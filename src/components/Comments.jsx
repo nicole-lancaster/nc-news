@@ -1,16 +1,12 @@
 import { fetchCommentsByArticleID } from "../api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { sqlDateFormatter } from "../utils.js";
 import { postComment } from "../api.js";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
+import { UserContext } from "../contexts/User.js";
 
-const Comments = ({
-  article_id,
-  comments,
-  setComments,
-  currentUser,
-  setCurrentUser,
-}) => {
+const Comments = ({ article_id, comments, setComments }) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [isError, setIsError] = useState(false);
