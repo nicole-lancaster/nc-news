@@ -15,11 +15,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/User.js";
 
-const NavBar = ({ users, setSelectedTopic }) => {
+const NavBar = ({ setSelectedTopic }) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [topics, setTopics] = useState([]);
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(UserContext)
 
   useEffect(() => {
     fetchTopics(setTopics).then((topicsList) => {
@@ -117,7 +117,7 @@ const NavBar = ({ users, setSelectedTopic }) => {
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <UserLogin currentUser={currentUser} />
+          <UserLogin />
           {!currentUser ? (
             <Link
               className="flex flex-row items-center text-sm font-semibold rounded-lg leading-6 text-gray-900  hover:bg-pink-500 font-mono p-2"

@@ -1,4 +1,9 @@
-const UserLogin = ({ currentUser }) => {
+import { useContext } from "react";
+import { UserContext } from "../contexts/User.js";
+
+const UserLogin = () => {
+  const { currentUser } = useContext(UserContext);
+
   if (currentUser === undefined) {
     return;
   }

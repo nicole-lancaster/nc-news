@@ -1,13 +1,18 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { fetchSingleArticle, updateArticleVote } from "../api";
 import { sqlDateFormatter } from "../utils.js";
 import Comments from "../components/Comments.jsx";
-import { HandThumbUpIcon, TagIcon } from "@heroicons/react/24/outline";
-import { NewspaperIcon } from "@heroicons/react/24/outline";
+import {
+  HandThumbUpIcon,
+  TagIcon,
+  NewspaperIcon,
+} from "@heroicons/react/24/outline";
+import { UserContext } from "../contexts/User.js";
 
-function SingleArticle({ currentUser, setCurrentUser }) {
+function SingleArticle() {
   const { article_id } = useParams();
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [singleArticle, setSingleArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import LoggedInModal from "./LoggedInModal";
+import { UserContext } from "../contexts/User.js";
 
-const SingleUser = ({ user, currentUser, setCurrentUser }) => {
+const SingleUser = ({ user }) => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoginClick = (user) => {

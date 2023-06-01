@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 
-const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
+const UsersList = ({ users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,14 +27,7 @@ const UsersList = ({ users, setUsers, currentUser, setCurrentUser }) => {
       <div className="flex-grow">
         <ul className="flex flex-row flex-wrap justify-center items-center">
           {users.map((user) => {
-            return (
-              <SingleUser
-                key={user.username}
-                user={user}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            );
+            return <SingleUser key={user.username} user={user} />;
           })}
         </ul>
       </div>

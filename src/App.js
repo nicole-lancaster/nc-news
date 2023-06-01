@@ -11,7 +11,6 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState();
-  const [currentUser, setCurrentUser] = useState();
 
   return (
     <div className="flex flex-col items-center h-screen">
@@ -34,15 +33,7 @@ function App() {
               </>
             }
           />
-          <Route
-            path="/articles/:article_id"
-            element={
-              <SingleArticle
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          />
+          <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route
             path="/users"
             element={
@@ -50,8 +41,6 @@ function App() {
                 className="flex flex-col flex-grow"
                 users={users}
                 setUsers={setUsers}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
               />
             }
           />
