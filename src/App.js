@@ -16,8 +16,6 @@ function App() {
   return (
     <div className="flex flex-col items-center h-screen">
       <NavBar
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
         users={users}
         setSelectedTopic={setSelectedTopic}
         selectedTopic={selectedTopic}

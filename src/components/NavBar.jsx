@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { fetchTopics } from "../api.js";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,11 +13,13 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/User.js";
 
-const NavBar = ({ currentUser, users, setCurrentUser, setSelectedTopic }) => {
+const NavBar = ({ users, setSelectedTopic }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [topics, setTopics] = useState([]);
   const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(UserContext)
 
   useEffect(() => {
     fetchTopics(setTopics).then((topicsList) => {
