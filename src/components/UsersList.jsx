@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { fetchUsers } from "../api.js";
 import { NewspaperIcon } from "@heroicons/react/24/outline";
 
-const UsersList = ({ users, setUsers }) => {
+const UsersList = () => {
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
