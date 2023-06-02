@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match rendered snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="bg-pink-500 w-full flex flex-row p-2 justify-between mt-2"
+  >
+    <div
+      class="flex flex-row items-center"
+    >
+      <svg
+        aria-hidden="true"
+        class="h-5 mr-2"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <p
+        class="font-mono font-pink-500 font-bold text-xs"
+      >
+        Created by Nicole Lancaster
+      </p>
+    </div>
+    <div
+      class="flex flex-row"
+    >
+      <a
+        href="https://github.com/nicole-lancaster"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="GitHub logo"
+          class="h-5 text-xs mr-1"
+          src="github-mark.png"
+        />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/nicole-lancaster-614929142/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="LinkedIn logo"
+          class="text-xs h-5 ml-1"
+          src="linkedInIcon.png"
+        />
+      </a>
+    </div>
+  </footer>
+</DocumentFragment>
+`;

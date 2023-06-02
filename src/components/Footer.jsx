@@ -1,7 +1,6 @@
 import { CodeBracketIcon } from "@heroicons/react/24/outline";
 import gitHubLogo from "../assets/github-mark.png";
 import linkedInLogo from "../assets/linkedInIcon.png";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -11,23 +10,23 @@ const Footer = () => {
         <p className="font-mono font-pink-500 font-bold text-xs">Created by Nicole Lancaster</p>
       </div>
       <div className="flex flex-row">
-        <Link to={"https://github.com/nicole-lancaster"} target="_blank">
+        <a href={"https://github.com/nicole-lancaster"} target="_blank" rel="noreferrer">
           <img
             src={gitHubLogo}
             alt="GitHub logo"
             className="h-5 text-xs mr-1"
           />
-        </Link>
-        <Link
-          to={"https://www.linkedin.com/in/nicole-lancaster-614929142/"}
-          target="_blank"
+        </a>
+        <a
+          href={"https://www.linkedin.com/in/nicole-lancaster-614929142/"}
+          target="_blank" rel="noreferrer"
         >
           <img
             src={linkedInLogo}
             alt="LinkedIn logo"
             className="text-xs h-5 ml-1"
           />
-        </Link>
+        </a>
       </div>
     </footer>
   );
