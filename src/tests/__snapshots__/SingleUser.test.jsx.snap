@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleUser component should match rendered snapshot 1`] = `
+<DocumentFragment>
+  <section>
+    <div
+      class="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1 w-32 md:w-48 lg:m-2 xl:w-120"
+    >
+      <button
+        data-testid="login-button"
+        type="submit"
+      >
+        <li
+          class="flex flex-col items-center mx-1 my-2 "
+        >
+          <p
+            class="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2"
+          >
+            Nicole as nicoleL
+          </p>
+          <img
+            alt="nicoleL"
+            class="p-1 w-fit h-20 self-center"
+            src="path/to/img"
+          />
+        </li>
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
+`;

@@ -12,17 +12,27 @@ jest.mock("../api.js", () => ({
 }));
 
 describe("SingleUser component", () => {
-  // test("should match rendered snapshot", () => {
-  //   const { asFragment } = render(<SingleUser />);
-  //   expect(asFragment()).toMatchSnapshot();
-  // });
+  test("should match rendered snapshot", () => {
+    const user = {
+      name: "Nicole",
+      username: "nicoleL",
+      avatar_url: "path/to/img",
+    };
+    const { asFragment } = render(
+      <UserContext.Provider
+        value={{ currentUser: null, setCurrentUser: () => {} }}
+      >
+        <SingleUser user={user} />
+      </UserContext.Provider>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
   test("should display single user", async () => {
     const user = {
       name: "Nicole",
       username: "nicoleL",
       avatar_url: "path/to/img",
     };
-
     render(
       <UserContext.Provider
         value={{ currentUser: null, setCurrentUser: () => {} }}
@@ -42,5 +52,16 @@ describe("SingleUser component", () => {
         "path/to/img"
       );
     });
+  });
+  test("should disable login button when user is already logged in", () => {
+    const user = { name: "Rob", username: "robR", avatar_url: "path/to/img" };
+    render(
+      <UserContext.Provider
+        value={{ currentUser: user, setCurrentUser: () => {} }}
+      >
+        <SingleUser user={user} />
+      </UserContext.Provider>
+    );
+    expect(screen.getByTestId("login-button")).toBeDisabled();
   });
 });

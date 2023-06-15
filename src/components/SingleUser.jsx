@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import LoggedInModal from "./LoggedInModal";
-import { UserContext } from "../contexts/User.js";
+import { UserContext } from "../contexts/User";
 
 const SingleUser = ({ user }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -14,13 +14,16 @@ const SingleUser = ({ user }) => {
 
   if (isLoading) return <p>Logging in...</p>;
 
+  const isUserLoggedIn = currentUser && currentUser.username === user.username;
+
   return (
     <section>
       <div className="border-2 border-light-gray-700 shadow rounded-lg hover:border-pink-700 m-1 p-1 w-32 md:w-48 lg:m-2 xl:w-120">
         <button
+          data-testid="login-button"
           type="submit"
           onClick={() => handleLoginClick(user)}
-          disabled={user.username === currentUser?.username}
+          disabled={isUserLoggedIn}
         >
           <li className="flex flex-col items-center mx-1 my-2 ">
             <p className="text-center text-xs md:text-sm lg:text-base xl:text-lg font-mono mt-2">
@@ -34,7 +37,9 @@ const SingleUser = ({ user }) => {
           </li>
         </button>
       </div>
-      {currentUser === user ? <LoggedInModal user={user} /> : null}
+      {currentUser && currentUser === user ? (
+        <LoggedInModal user={user} />
+      ) : null}
     </section>
   );
 };
