@@ -10,8 +10,8 @@ const UsersList = () => {
   useEffect(() => {
     setIsLoading(true);
     fetchUsers(setUsers).then((usersList) => {
-      setUsers(usersList);
       setIsLoading(false);
+      setUsers(usersList);
     });
   }, [setUsers]);
 

@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import UsersList from "../components/UsersList";
 import { UserContext } from "../contexts/User";
+import "@testing-library/jest-dom/extend-expect";
 
 jest.mock("../api.js", () => ({
   fetchUsers: () =>
@@ -12,11 +13,10 @@ jest.mock("../api.js", () => ({
 
 describe("Users List component", () => {
   test("should match rendered snapshot", () => {
-    const { asFragment } = render(
-      <UsersList />
-    );
+    const { asFragment } = render(<UsersList />);
     expect(asFragment()).toMatchSnapshot();
   });
+
   test("should display users", async () => {
     render(
       <UserContext.Provider
@@ -25,8 +25,11 @@ describe("Users List component", () => {
         <UsersList />
       </UserContext.Provider>
     );
-
-    await screen.findByText("Rob as robR");
-    await screen.findByText("Nicole as nicoleL");
+    await waitFor(() => {
+      expect(screen.getByText("Rob as robR")).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(screen.getByText("Nicole as nicoleL")).toBeInTheDocument();
+    });
   });
 });
