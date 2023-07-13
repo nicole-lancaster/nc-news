@@ -37,6 +37,6 @@ You are now ready to run this locally by following the steps below:
 4. Have fun!
    
 
-# Feedback welcome 🫶
+## Feedback welcome 🫶
 
 I had a lot of fun building this, and always strive to improve. Any comments or suggestions for improvement are gratefully received so please feel free to submit a pull request or go to the social links on my main GitHub page to get in touch.
