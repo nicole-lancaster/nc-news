@@ -7,15 +7,12 @@ Welcome to Nicole's News, a Reddit style social aggregation news application.
 
 You can find the live, hosted version here --> https://nicoles-news.netlify.app/
 
+Built with JavaScript and React and styled using TailwindCSS
+
 This application consumes an API built by myself, which you can find here: https://nc-news-portfolio.onrender.com/
 
-# Summary
 
-Built with JavaScript and React
-
-Styled with TailwindCSS
-
-# Prerequistes
+## Prerequistes
 You will need Node to run this locally. The links for the minimum versions required are below.
 
 Node
@@ -23,7 +20,7 @@ Minimum version required: 18.13.0
 To check your current version: run `node -v` in your terminal
 
 
-# Getting set up
+## Getting set up
 You are now ready to run this locally by following the steps below:
 
 1. Clone this repository
@@ -38,6 +35,7 @@ You are now ready to run this locally by following the steps below:
 3. To run this on your local server, run the command `npm run start`.
 
 4. Have fun!
+   
 
 # Feeback welcome
 
