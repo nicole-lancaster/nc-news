@@ -29,10 +29,13 @@ You are now ready to run this locally by following the steps below:
     - run this command: `git clone https://github.com/nicole-lancaster/nc-news`
     - cd into the repository using this command: `cd nc-news`
     - you are now ready to open this on your IDE of choice. If this is VSCode, run the command `code nc-news`
+
   
 2. Run `'npm install'` from your terminal to install the required dependencies
 
+
 3. To run this on your local server, run the command `npm run start`.
+
 
 4. Have fun!
    
